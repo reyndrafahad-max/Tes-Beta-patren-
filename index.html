@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Susun Pattern</title>
+<title>Reyedit</title>
+<meta name="theme-color" content="#F4F5FF">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#1B2A2C">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Susun Pattern">
+<meta name="apple-mobile-web-app-title" content="Reyedit">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
@@ -164,46 +164,241 @@
   .nudge{display:grid; grid-template-columns:repeat(3,48px); grid-auto-rows:42px; gap:6px; justify-content:center; margin:8px 0 12px}
   .nudge button{border:1.5px solid var(--ink); background:#fff; border-radius:10px; font-size:16px; color:var(--ink); cursor:pointer; touch-action:manipulation}
   input:disabled{opacity:.5}
+
+  /* ===== Reyedit: tampilan baru ===== */
+  :root{
+    --fh:36vh;
+    --bg:#F4F5FF; --panel:#FFFFFF; --ink:#1E2757; --muted:#667098; --line:#E4E7F7;
+    --accent:#7C5CF0; --accent2:#9B6BF6; --teal:#6C4EE8; --soft:#F0EEFF; --onacc:#fff;
+    --grad:linear-gradient(135deg,#6E4EEB 0%,#9468F8 100%);
+    --gsh:rgba(110,78,235,.38); --shadow:0 8px 26px rgba(80,70,190,.10);
+    --blob1:#E4E8FF; --blob2:#EEE4FF;
+  }
+  :root[data-theme="batik"]{--accent:#8B5A2B; --accent2:#C07A3A; --teal:#8B5A2B; --soft:#F6EBD6; --bg:#FBF6EC; --ink:#3B2A1A; --muted:#8A735C; --line:#EADFCB;
+    --grad:linear-gradient(135deg,#7A4A22 0%,#C07A3A 100%); --gsh:rgba(122,74,34,.38); --shadow:0 8px 26px rgba(120,80,30,.12); --blob1:#F3E6CC; --blob2:#EBD8B4}
+  :root[data-theme="natal"]{--accent:#C0392B; --accent2:#E4574A; --teal:#2E7D4F; --soft:#E6F3E8; --bg:#F6FBF7; --ink:#1E3A2A; --muted:#5C7C68; --line:#DCEBDD;
+    --grad:linear-gradient(135deg,#B02A22 0%,#E4574A 100%); --gsh:rgba(176,42,34,.36); --shadow:0 8px 26px rgba(40,100,60,.12); --blob1:#DDF0E0; --blob2:#F9E0DE}
+  :root[data-theme="halloween"]{--accent:#E8700F; --accent2:#9B5DE5; --teal:#8E4FD6; --soft:#FFEBD6; --bg:#FFF8F0; --ink:#2A1B3D; --muted:#7A6590; --line:#F1E3D4;
+    --grad:linear-gradient(135deg,#F07A12 0%,#9B5DE5 100%); --gsh:rgba(200,100,40,.36); --shadow:0 8px 26px rgba(120,70,160,.12); --blob1:#FFE4C7; --blob2:#EBDDFB}
+  :root[data-theme="tahunbaru"]{--accent:#E8508A; --accent2:#F6A21E; --teal:#E8508A; --soft:#FFEAF2; --bg:#FFF8FA; --ink:#262456; --muted:#767099; --line:#F4E1EA;
+    --grad:linear-gradient(135deg,#E8508A 0%,#F6A21E 100%); --gsh:rgba(232,80,138,.36); --shadow:0 8px 26px rgba(180,80,120,.12); --blob1:#FFE3EE; --blob2:#FFF0CF}
+  :root[data-mode="dark"]{--bg:#10121C; --panel:#1A1D2C; --ink:#EEF0FF; --muted:#9BA3D1; --line:#2B2F48; --soft:#242844; --shadow:0 8px 26px rgba(0,0,0,.4); --blob1:#1B2042; --blob2:#261D45}
+  @media (prefers-color-scheme: dark){
+    :root[data-mode="auto"]{--bg:#10121C; --panel:#1A1D2C; --ink:#EEF0FF; --muted:#9BA3D1; --line:#2B2F48; --soft:#242844; --shadow:0 8px 26px rgba(0,0,0,.4); --blob1:#1B2042; --blob2:#261D45}
+  }
+  body{
+    font-family:"Nunito","Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background-color:var(--bg);
+    background-image:radial-gradient(120% 46% at 108% -6%, var(--blob2) 0, transparent 62%), radial-gradient(80% 36% at -12% 0, var(--blob1) 0, transparent 60%);
+    background-repeat:no-repeat; padding-bottom:116px;
+  }
+  .ic{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex:none}
+  .spk{width:18px; height:18px; flex:none}
+
+  .hd{display:flex; align-items:center; justify-content:space-between; width:min(100%,560px); margin:0 auto; padding:16px 18px 8px}
+  .brand{display:flex; align-items:center; gap:12px; min-width:0}
+  .logo{width:56px; height:56px; flex:none}
+  .brand h1{margin:0; font-size:32px; line-height:1; font-weight:900; letter-spacing:-.8px; color:var(--ink); display:flex; align-items:flex-start; gap:4px}
+  .brand h1 .spk{width:20px; height:20px; color:var(--accent); margin-top:-3px}
+  .brand p{margin:5px 0 0; font-size:15px; color:var(--muted); font-weight:600}
+  .gear{width:52px; height:52px; border-radius:50%; border:0; background:var(--panel); box-shadow:var(--shadow); display:grid; place-items:center; color:var(--ink); cursor:pointer; flex:none}
+  .gear .ic{width:26px; height:26px}
+
+  .stage{background:transparent; border-bottom:0; padding:4px 14px 6px; transition:background .15s}
+  .stage.stuck{background:var(--bg); box-shadow:0 8px 18px rgba(30,30,90,.07)}
+  .tabs{display:flex; width:min(100%,560px); margin:0 auto 12px; background:var(--panel); border:1px solid var(--line); border-radius:28px; padding:5px; box-shadow:var(--shadow)}
+  .tabs button{flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 6px; border-radius:23px; font-size:16px; font-weight:800; color:var(--muted); background:transparent; border:0; white-space:nowrap}
+  .tabs button[aria-selected="true"]{background:var(--grad); color:var(--onacc); box-shadow:0 8px 18px var(--gsh)}
+  .tabs .ic{width:22px; height:22px}
+  .pv{position:relative; width:min(100%,560px); margin:0 auto; background:var(--panel); border:1px solid var(--line); border-radius:28px; padding:14px 14px 12px; box-shadow:var(--shadow); overflow:hidden}
+  .pv::before,.pv::after{content:""; position:absolute; pointer-events:none}
+  .pv::before{left:-30px; top:40px; width:92px; height:150px; border-radius:60% 40% 55% 45%; background:var(--blob1); transform:rotate(-18deg)}
+  .pv::after{right:-34px; bottom:60px; width:100px; height:160px; border-radius:45% 55% 40% 60%; background:var(--blob2); transform:rotate(20deg)}
+  .pv > *{position:relative; z-index:1}
+  .frame{border-radius:20px; box-shadow:0 12px 30px rgba(40,30,120,.22); background-color:#fff}
+  .frame.empty{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Crect%20width%3D%22220%22%20height%3D%22220%22%20fill%3D%22%23FBF7EA%22%2F%3E%3Cg%20transform%3D%22translate%2830%2040%29%20rotate%2820%29%22%3E%3Cpath%20d%3D%22M0%200C15.3%208.5%2015.3%2025.5%200%2034.0C-15.3%2025.5%20-15.3%208.5%200%200Z%22%20fill%3D%22%238DB08A%22%2F%3E%3Cpath%20d%3D%22M0%200V34.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2880%2018%29%20rotate%28-30%29%22%3E%3Cpath%20d%3D%22M0%200C13.5%207.5%2013.5%2022.5%200%2030.0C-13.5%2022.5%20-13.5%207.5%200%200Z%22%20fill%3D%22%237FA37F%22%2F%3E%3Cpath%20d%3D%22M0%200V30.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28150%2060%29%20rotate%2850%29%22%3E%3Cpath%20d%3D%22M0%200C16.2%209.0%2016.2%2027.0%200%2036.0C-16.2%2027.0%20-16.2%209.0%200%200Z%22%20fill%3D%22%238DB08A%22%2F%3E%3Cpath%20d%3D%22M0%200V36.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28190%2020%29%20rotate%28-10%29%22%3E%3Cpath%20d%3D%22M0%200C11.7%206.5%2011.7%2019.5%200%2026.0C-11.7%2019.5%20-11.7%206.5%200%200Z%22%20fill%3D%22%236F9774%22%2F%3E%3Cpath%20d%3D%22M0%200V26.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2860%20110%29%20rotate%28160%29%22%3E%3Cpath%20d%3D%22M0%200C14.4%208.0%2014.4%2024.0%200%2032.0C-14.4%2024.0%20-14.4%208.0%200%200Z%22%20fill%3D%22%237FA37F%22%2F%3E%3Cpath%20d%3D%22M0%200V32.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28120%20120%29%20rotate%28-140%29%22%3E%3Cpath%20d%3D%22M0%200C15.3%208.5%2015.3%2025.5%200%2034.0C-15.3%2025.5%20-15.3%208.5%200%200Z%22%20fill%3D%22%237FA37F%22%2F%3E%3Cpath%20d%3D%22M0%200V34.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2820%20170%29%20rotate%28200%29%22%3E%3Cpath%20d%3D%22M0%200C13.5%207.5%2013.5%2022.5%200%2030.0C-13.5%2022.5%20-13.5%207.5%200%200Z%22%20fill%3D%22%236F9774%22%2F%3E%3Cpath%20d%3D%22M0%200V30.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28100%20190%29%20rotate%2810%29%22%3E%3Cpath%20d%3D%22M0%200C15.3%208.5%2015.3%2025.5%200%2034.0C-15.3%2025.5%20-15.3%208.5%200%200Z%22%20fill%3D%22%237FA37F%22%2F%3E%3Cpath%20d%3D%22M0%200V34.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28170%20150%29%20rotate%28-60%29%22%3E%3Cpath%20d%3D%22M0%200C14.4%208.0%2014.4%2024.0%200%2032.0C-14.4%2024.0%20-14.4%208.0%200%200Z%22%20fill%3D%22%238DB08A%22%2F%3E%3Cpath%20d%3D%22M0%200V32.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28200%20205%29%20rotate%28130%29%22%3E%3Cpath%20d%3D%22M0%200C11.7%206.5%2011.7%2019.5%200%2026.0C-11.7%2019.5%20-11.7%206.5%200%200Z%22%20fill%3D%22%236F9774%22%2F%3E%3Cpath%20d%3D%22M0%200V26.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28140%2012%29%20rotate%28170%29%22%3E%3Cpath%20d%3D%22M0%200C10.8%206.0%2010.8%2018.0%200%2024.0C-10.8%2018.0%20-10.8%206.0%200%200Z%22%20fill%3D%22%237FA37F%22%2F%3E%3Cpath%20d%3D%22M0%200V24.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2810%20100%29%20rotate%28-80%29%22%3E%3Cpath%20d%3D%22M0%200C11.7%206.5%2011.7%2019.5%200%2026.0C-11.7%2019.5%20-11.7%206.5%200%200Z%22%20fill%3D%22%236F9774%22%2F%3E%3Cpath%20d%3D%22M0%200V26.0%22%20stroke%3D%22%235F8560%22%20stroke-width%3D%221%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2848%2070%29%20rotate%2827%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%226.2%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28120%2048%29%20rotate%284%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%225.6%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28176%20104%29%20rotate%2811%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-14.9%22%20rx%3D%2210.1%22%20ry%3D%2214.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-14.9%22%20rx%3D%2210.1%22%20ry%3D%2214.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-14.9%22%20rx%3D%2210.1%22%20ry%3D%2214.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-14.9%22%20rx%3D%2210.1%22%20ry%3D%2214.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-14.9%22%20rx%3D%2210.1%22%20ry%3D%2214.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%226.7%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2870%20150%29%20rotate%2855%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-12.4%22%20rx%3D%228.4%22%20ry%3D%2212.4%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%225.6%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28150%20190%29%20rotate%2853%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-13.6%22%20rx%3D%229.2%22%20ry%3D%2213.6%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%226.2%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2820%20200%29%20rotate%288%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-11.2%22%20rx%3D%227.6%22%20ry%3D%2211.2%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-11.2%22%20rx%3D%227.6%22%20ry%3D%2211.2%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-11.2%22%20rx%3D%227.6%22%20ry%3D%2211.2%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-11.2%22%20rx%3D%227.6%22%20ry%3D%2211.2%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-11.2%22%20rx%3D%227.6%22%20ry%3D%2211.2%22%20fill%3D%22%236FA3E6%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%225.0%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28200%2036%29%20rotate%2830%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-9.9%22%20rx%3D%226.7%22%20ry%3D%229.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-9.9%22%20rx%3D%226.7%22%20ry%3D%229.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-9.9%22%20rx%3D%226.7%22%20ry%3D%229.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-9.9%22%20rx%3D%226.7%22%20ry%3D%229.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-9.9%22%20rx%3D%226.7%22%20ry%3D%229.9%22%20fill%3D%22%238E7BD8%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%224.5%22%20fill%3D%22%23F4B45C%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28100%2086%29%20rotate%2811%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.6%22%20rx%3D%223.8%22%20ry%3D%225.6%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.6%22%20rx%3D%223.8%22%20ry%3D%225.6%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.6%22%20rx%3D%223.8%22%20ry%3D%225.6%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.6%22%20rx%3D%223.8%22%20ry%3D%225.6%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.6%22%20rx%3D%223.8%22%20ry%3D%225.6%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%222.5%22%20fill%3D%22%238A6A2A%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%2830%20128%29%20rotate%2870%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%222.2%22%20fill%3D%22%238A6A2A%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28192%20166%29%20rotate%2854%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%222.2%22%20fill%3D%22%238A6A2A%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28110%20160%29%20rotate%287%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-4.3%22%20rx%3D%222.9%22%20ry%3D%224.3%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-4.3%22%20rx%3D%222.9%22%20ry%3D%224.3%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-4.3%22%20rx%3D%222.9%22%20ry%3D%224.3%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-4.3%22%20rx%3D%222.9%22%20ry%3D%224.3%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-4.3%22%20rx%3D%222.9%22%20ry%3D%224.3%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%222.0%22%20fill%3D%22%238A6A2A%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28160%2030%29%20rotate%2815%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%280%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%2872%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28144%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28216%29%22%2F%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-5.0%22%20rx%3D%223.4%22%20ry%3D%225.0%22%20fill%3D%22%23F4B45C%22%20transform%3D%22rotate%28288%29%22%2F%3E%3Ccircle%20r%3D%222.2%22%20fill%3D%22%238A6A2A%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2261%22%20cy%3D%22165%22%20r%3D%221.9%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%22151%22%20cy%3D%22153%22%20r%3D%221.5%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%2215%22%20cy%3D%22146%22%20r%3D%222.3%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%22111%22%20cy%3D%2240%22%20r%3D%221.8%22%20fill%3D%22%239DBBEA%22%2F%3E%3Ccircle%20cx%3D%2282%22%20cy%3D%22147%22%20r%3D%222.3%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%22152%22%20r%3D%221.8%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%2299%22%20cy%3D%2228%22%20r%3D%221.8%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%2219%22%20r%3D%221.9%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%22178%22%20cy%3D%22140%22%20r%3D%221.6%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%22123%22%20cy%3D%22153%22%20r%3D%222.5%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%2267%22%20r%3D%222.2%22%20fill%3D%22%239DBBEA%22%2F%3E%3Ccircle%20cx%3D%22203%22%20cy%3D%2266%22%20r%3D%220.9%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%22138%22%20cy%3D%22130%22%20r%3D%222.4%22%20fill%3D%22%239DBBEA%22%2F%3E%3Ccircle%20cx%3D%22118%22%20cy%3D%2277%22%20r%3D%221.9%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%22135%22%20r%3D%221.6%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%22129%22%20r%3D%221.6%22%20fill%3D%22%239DBBEA%22%2F%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%22199%22%20r%3D%221.8%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%2291%22%20cy%3D%22181%22%20r%3D%221.4%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%22152%22%20cy%3D%22208%22%20r%3D%221.6%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%2273%22%20cy%3D%22125%22%20r%3D%222.1%22%20fill%3D%22%23B8AEE8%22%2F%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%22191%22%20r%3D%222.1%22%20fill%3D%22%239DBBEA%22%2F%3E%3Ccircle%20cx%3D%22151%22%20cy%3D%22178%22%20r%3D%222.3%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%22187%22%20cy%3D%22102%22%20r%3D%222.4%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%229%22%20cy%3D%22122%22%20r%3D%221.4%22%20fill%3D%22%239DBBEA%22%2F%3E%3Ccircle%20cx%3D%2233%22%20cy%3D%22130%22%20r%3D%220.9%22%20fill%3D%22%23F1C98B%22%2F%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%22193%22%20r%3D%221.2%22%20fill%3D%22%23F1C98B%22%2F%3E%3C%2Fsvg%3E"); background-size:100% 100%; background-color:#FBF7EA}
+  .frame.empty canvas{opacity:0}
+  .badge{display:none; position:absolute; top:30px; right:12px; z-index:3; align-items:center; gap:8px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:8px 12px 8px 10px; box-shadow:var(--shadow); font-size:12px; font-weight:800; line-height:1.25; color:var(--ink)}
+  .pv.empty .badge{display:flex}
+  .badge .ic{width:26px; height:26px; color:var(--accent)}
+  .badge .spk{position:absolute; top:-7px; right:-3px; width:15px; height:15px; color:var(--accent)}
+  .pv > .hint{position:relative}
+  .hint{inset:auto; display:block; background:none; padding:0; margin:12px 8px 4px; font-size:15px; line-height:1.45; color:var(--muted); text-align:center}
+  .meta{width:100%; margin:8px 0 0; font-size:14px; color:var(--muted); min-height:36px}
+  .st{display:flex; align-items:center; gap:8px; min-width:0; flex:1}
+  .st .ic{width:22px; height:22px; color:var(--accent)}
+  .pill{background:var(--soft); border-radius:18px; padding:9px 14px 9px 9px; font-size:14px; font-weight:800; color:var(--ink); gap:10px}
+  .pill input{-webkit-appearance:none; appearance:none; width:26px; height:26px; border-radius:9px; border:2px solid var(--line); background:var(--panel); margin:0; display:grid; place-items:center}
+  .pill input:checked{background:var(--grad); border-color:transparent}
+  .pill input:checked::after{content:""; width:12px; height:6px; border-left:3px solid #fff; border-bottom:3px solid #fff; transform:rotate(-45deg) translate(1px,-1px)}
+  .tools button{background:var(--panel); border:1.5px solid var(--line); color:var(--ink); border-radius:12px}
+  .tools button.danger{color:#E5484D; border-color:#F2B8BA}
+
+  details.mc{--tint:color-mix(in srgb, var(--c) 9%, var(--panel)); --tl:color-mix(in srgb, var(--c) 20%, var(--panel));
+    background:var(--panel); background:var(--tint); border:1px solid var(--tl); border-radius:22px; margin:12px auto; box-shadow:none;
+    scroll-margin-top:calc(var(--fh) + 214px)}
+  .c-purple{--c:#7C5CF0; --ic:linear-gradient(135deg,#9A85F6,#6F52EA)}
+  .c-blue{--c:#3E86F5; --ic:linear-gradient(135deg,#5B9CFA,#3B82F0)}
+  .c-green{--c:#22B07D; --ic:linear-gradient(135deg,#3AD0A0,#1FA578)}
+  .c-orange{--c:#F5792A; --ic:linear-gradient(135deg,#FF9A55,#F5792A)}
+  .c-pink{--c:#F0507B; --ic:linear-gradient(135deg,#FF7A9C,#EE4F7D)}
+  .c-teal{--c:#14A9C4; --ic:linear-gradient(135deg,#35C6DE,#119DB8)}
+  details.mc > summary{display:flex; align-items:center; gap:14px; padding:14px 16px; cursor:pointer}
+  details.mc > summary::after{content:none}
+  .mi{width:58px; height:58px; border-radius:19px; background:var(--ic); display:grid; place-items:center; color:#fff; flex:none; box-shadow:0 8px 16px color-mix(in srgb, var(--c) 38%, transparent)}
+  .mi .ic{width:28px; height:28px}
+  .mt{flex:1; min-width:0}
+  .mt b{display:block; font-size:18px; font-weight:800; color:var(--ink); line-height:1.2}
+  .mt small{display:block; margin-top:3px; font-size:13.5px; font-weight:500; color:var(--muted)}
+  details.mc > summary{position:relative}
+  .sps{position:absolute; right:52px; top:10px; width:22px; height:22px; color:var(--c); opacity:.85}
+  .chev{width:22px; height:22px; color:var(--muted); transition:transform .2s}
+  details.mc[open] .chev{transform:rotate(90deg)}
+  details.mc .body{padding:12px 16px 16px; border-top:1px solid var(--tl)}
+
+  .btn{border:1.5px solid var(--line); background:var(--panel); color:var(--ink); border-radius:14px; padding:10px 15px; font-weight:700}
+  .btn.dark{background:var(--grad); color:var(--onacc); border:0; box-shadow:0 6px 14px var(--gsh)}
+  .btn.primary{background:var(--grad); color:var(--onacc); border:0}
+  .check input{accent-color:var(--accent)}
+  .row{background:var(--panel); border:1px solid var(--line); border-radius:14px}
+  .row img{border:1px solid var(--line); border-radius:10px}
+  .step button, .del{background:var(--soft); color:var(--ink); border-radius:10px}
+  .del{background:transparent}
+  .ctl output{color:var(--accent); font-weight:800}
+  select, input[type=number], input[type=color]{background:var(--panel); color:var(--ink); border-color:var(--line); border-radius:12px}
+  .seg button{background:var(--panel); border-color:var(--line); color:var(--ink); border-radius:12px}
+  .seg button[aria-pressed="true"]{background:var(--grad); border-color:transparent; color:var(--onacc)}
+  .chips button{background:var(--panel); border-color:var(--line); color:var(--ink)}
+  .chips button[aria-pressed="true"]{background:var(--grad); border-color:transparent; color:var(--onacc)}
+  .samples button{background:var(--soft); color:var(--ink); border-radius:14px}
+  .nudge button{background:var(--panel); border-color:var(--line); color:var(--ink)}
+  .row .orig{color:var(--accent)}
+  .row.sel{outline-color:var(--accent)}
+  button.tileOnly{background:var(--grad); color:var(--onacc)}
+  select.tileOnly{background:var(--panel); color:var(--ink); border-color:var(--line)}
+
+  .bar{background:linear-gradient(transparent, var(--bg) 40%); border:0; padding:24px 16px calc(12px + env(safe-area-inset-bottom)); pointer-events:none}
+  .bar .in{gap:12px; max-width:560px}
+  .bar .btn{pointer-events:auto; flex:1; height:58px; padding:0 12px; border-radius:20px; font-size:17px; font-weight:800; gap:10px}
+  .bar .btn.ghost{background:var(--panel); border:2px solid var(--accent); color:var(--accent)}
+  .bar .btn.primary{background:var(--grad); color:var(--onacc); border:0; box-shadow:0 10px 22px var(--gsh)}
+  .bar .spk{width:15px; height:15px; align-self:flex-start; margin-top:12px; opacity:.9}
+  .toast{bottom:100px; border-radius:14px}
+
+  .sheet{position:fixed; inset:0; z-index:60; background:rgba(14,14,40,.5); display:flex; align-items:flex-end}
+  .sheet .pane{background:var(--panel); color:var(--ink); border-radius:26px 26px 0 0; padding:18px 18px calc(20px + env(safe-area-inset-bottom)); width:100%; max-width:560px; margin:0 auto; max-height:82vh; overflow:auto}
+  .sheet .ph{display:flex; align-items:center; justify-content:space-between; font-size:20px; font-weight:900; margin-bottom:6px}
+  .sheet .ph button{width:38px; height:38px; border-radius:50%; border:0; background:var(--soft); color:var(--ink); font-size:22px; cursor:pointer}
+  .sheet .lab{margin:16px 0 8px; font-size:13px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
+  .themes{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
+  .themes button{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; border:1.5px solid var(--line); background:var(--panel); color:var(--ink); font:inherit; font-weight:700; font-size:14px; cursor:pointer; text-align:left}
+  .themes button[aria-pressed="true"]{border-color:var(--accent); background:var(--soft)}
+  .themes i{width:26px; height:26px; border-radius:9px; flex:none}
+  #result, .note{color:var(--muted)}
+
+  /* ===== penyesuaian: lebih ringkas, teks petunjuk di dalam layer, titik fokus ===== */
+  :root{--fh:28vh}
+  body.editing{--fh:30vh}
+  body.compact, body.compact.editing{--fh:15vh}
+  .st > #status{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0}
+  .shr{width:34px; height:34px; border-radius:11px; border:0; background:var(--soft); color:var(--accent); display:grid; place-items:center; flex:none; cursor:pointer; padding:0}
+  .shr .ic{width:20px; height:20px}
+  .tabs{margin-bottom:8px; padding:4px}
+  .tabs button{padding:9px 6px; font-size:15px}
+  .pv{padding:10px 10px 8px}
+  .frame .hint{position:absolute; inset:auto 10px 10px 10px; display:block; margin:0; padding:8px 12px; border-radius:14px; z-index:2;
+    background:color-mix(in srgb, var(--panel) 88%, transparent); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    color:var(--ink); font-size:12.5px; line-height:1.4; font-weight:600; text-align:center; box-shadow:0 4px 14px rgba(40,30,120,.14)}
+  .badge{top:16px; right:8px; font-size:11px; padding:6px 10px 6px 8px; border-radius:14px}
+  .badge .ic{width:22px; height:22px}
+  .meta{margin-top:6px; min-height:30px}
+  .pill{padding:6px 12px 6px 7px; font-size:13px; gap:8px; border-radius:16px}
+  .pill input{width:22px; height:22px; border-radius:8px}
+  .tools{flex-wrap:nowrap; overflow-x:auto; gap:6px; padding:6px 0 2px; -webkit-overflow-scrolling:touch}
+  .tools button{flex:none; padding:6px 10px; font-size:12.5px; border-radius:10px}
+  body{padding-bottom:96px}
+  .bar{padding:18px 14px calc(10px + env(safe-area-inset-bottom))}
+  .bar .btn{height:50px; border-radius:18px; font-size:16px}
+  .bar .spk{margin-top:8px}
+  .toast{bottom:84px}
+  .focus{display:grid; grid-template-columns:repeat(3, 46px); gap:8px; margin:6px 0 2px}
+  .focus button{width:46px; height:46px; border-radius:14px; border:1.5px solid var(--line); background:var(--panel); cursor:pointer; position:relative; padding:0}
+  .focus button::after{content:""; position:absolute; inset:0; margin:auto; width:12px; height:12px; border-radius:50%; background:var(--muted); opacity:.55}
+  .focus button[aria-pressed="true"]{background:var(--grad); border-color:transparent; box-shadow:0 6px 14px var(--gsh)}
+  .focus button[aria-pressed="true"]::after{background:#fff; opacity:1; width:14px; height:14px}
 </style>
 </head>
 <body>
 
-<div class="stage">
-  <div class="top">
-    <h1>Susun Pattern</h1>
-    <div class="tabs" role="tablist">
-      <button role="tab" aria-selected="true" data-mode="preview">Pratinjau</button>
-      <button role="tab" aria-selected="false" data-mode="tile" id="tileTab">Cek sambungan</button>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39A0FF"/><stop offset=".5" stop-color="#7B5CF5"/><stop offset="1" stop-color="#F26BB5"/></linearGradient>
+    <symbol id="logoR" viewBox="0 0 64 64"><path fill="url(#gR)" fill-rule="evenodd" d="M10 6H34C46 6 53 13 53 22C53 29 49 34 43 36.5L55 58H41L31 40H22V58H10Z M22 17V30H33C38 30 41 27.500 41 23.500C41 19.500 38 17 33 17Z"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M12 3v4.500"/><path d="M4.500 7l3.500 3"/><path d="M19.500 7L16 10"/></g></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.500-7 10-7 10 7 10 7-3.500 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.540.540l3-3a5 5 0 0 0-7.070-7.070l-1.720 1.710"/><path d="M14 11a5 5 0 0 0-7.540-.540l-3 3a5 5 0 0 0 7.070 7.070l1.710-1.710"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.090-3.090a2 2 0 0 0-2.820 0L6 21"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.500"/><rect x="14" y="3" width="7" height="7" rx="1.500"/><rect x="14" y="14" width="7" height="7" rx="1.500"/><rect x="3" y="14" width="7" height="7" rx="1.500"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18"/><path d="M9 13h12"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.500 3.500a2.120 2.120 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><g fill="currentColor" stroke="none"><circle cx="8.500" cy="8.500" r="1.200"/><circle cx="15.500" cy="8.500" r="1.200"/><circle cx="12" cy="12" r="1.200"/><circle cx="8.500" cy="15.500" r="1.200"/><circle cx="15.500" cy="15.500" r="1.200"/></g></symbol>
+    <symbol id="i-dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+    <symbol id="i-min" viewBox="0 0 24 24"><path d="M4 14h6v6"/><path d="M20 10h-6V4"/><path d="m14 10 7-7"/><path d="m3 21 7-7"/></symbol>
+    <symbol id="i-max" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.220 2h-.440a2 2 0 0 0-2 2v.180a2 2 0 0 1-1 1.730l-.430.250a2 2 0 0 1-2 0l-.150-.080a2 2 0 0 0-2.730.730l-.220.380a2 2 0 0 0 .730 2.730l.150.100a2 2 0 0 1 1 1.720v.510a2 2 0 0 1-1 1.740l-.150.090a2 2 0 0 0-.730 2.730l.220.380a2 2 0 0 0 2.730.730l.150-.080a2 2 0 0 1 2 0l.430.250a2 2 0 0 1 1 1.730V20a2 2 0 0 0 2 2h.440a2 2 0 0 0 2-2v-.180a2 2 0 0 1 1-1.730l.430-.250a2 2 0 0 1 2 0l.150.080a2 2 0 0 0 2.730-.730l.220-.390a2 2 0 0 0-.730-2.730l-.150-.080a2 2 0 0 1-1-1.740v-.500a2 2 0 0 1 1-1.740l.150-.090a2 2 0 0 0 .730-2.730l-.220-.380a2 2 0 0 0-2.730-.730l-.150.080a2 2 0 0 1-2 0l-.430-.250a2 2 0 0 1-1-1.730V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+  </defs>
+</svg>
+<header class="hd">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#logoR"/></svg>
+    <div>
+      <h1>Reyedit<svg class="spk" aria-hidden="true"><use href="#spark"/></svg></h1>
+      <p>Pattern &amp; Design Editor</p>
     </div>
   </div>
-  <div class="frame" id="frame">
-    <canvas id="view" width="720" height="720"></canvas>
-    <div class="hint" id="hint">Tambah gambar motifmu (SVG atau PNG transparan), atau buka "Contoh motif" di bawah.</div>
+  <button class="gear" id="gear" type="button" aria-label="Pengaturan"><svg class="ic" aria-hidden="true"><use href="#i-gear"/></svg></button>
+</header>
+
+<div id="sent" style="height:1px"></div>
+<div class="stage" id="stage">
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-mode="preview"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><span>Pratinjau</span><svg class="spk" aria-hidden="true"><use href="#spark"/></svg></button>
+    <button role="tab" aria-selected="false" data-mode="tile" id="tileTab"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span>Cek sambungan</span></button>
   </div>
-  <div class="meta">
-    <span id="status">Belum ada motif.</span>
-    <span class="metar">
-      <select class="tileOnly" id="tileN" aria-label="Jumlah ubin"><option value="2">2×2</option><option value="3">3×3</option><option value="4">4×4</option></select>
-      <label class="mini" id="seamLbl"><input type="checkbox" id="seam" checked> Garis sambungan</label>
-      <button class="tileOnly" id="tileDl" type="button">Unduh</button>
-      <label class="pill" id="editLbl"><input type="checkbox" id="edit"> Edit manual</label>
-    </span>
-  </div>
-  <div class="tools" id="tools" hidden>
-    <button type="button" id="tUndo">Urungkan</button>
-    <button type="button" id="tRedo">Ulangi</button>
-    <button type="button" id="tDup">Gandakan</button>
-    <button type="button" id="tFlip">Cermin</button>
-    <button type="button" id="tFront">Ke depan</button>
-    <button type="button" id="tBack">Ke belakang</button>
-    <button type="button" id="tCx">Tengah ↔</button>
-    <button type="button" id="tCy">Tengah ↕</button>
-    <button type="button" id="tDel" class="danger">Hapus</button>
+  <div class="pv empty" id="pv">
+    <div class="frame empty" id="frame">
+      <canvas id="view" width="720" height="720"></canvas>
+      <p class="hint" id="hint">Tambah gambar motifmu (SVG atau PNG transparan), atau buka "Contoh motif" di bawah.</p>
+    </div>
+    <div class="badge" id="badge"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg><span>Motif siap<br>dijadikan pattern</span><svg class="spk" aria-hidden="true"><use href="#spark"/></svg></div>
+    <div class="meta">
+      <span class="st"><button class="shr" id="shrink" type="button" aria-label="Perkecil pratinjau" aria-pressed="false"><svg class="ic" aria-hidden="true"><use id="shrUse" href="#i-min"/></svg></button><span id="status">Belum ada motif.</span></span>
+      <span class="metar">
+        <select class="tileOnly" id="tileN" aria-label="Jumlah ubin"><option value="2">2×2</option><option value="3">3×3</option><option value="4">4×4</option></select>
+        <label class="mini" id="seamLbl"><input type="checkbox" id="seam" checked> Garis sambungan</label>
+        <button class="tileOnly" id="tileDl" type="button">Unduh</button>
+        <label class="pill" id="editLbl"><input type="checkbox" id="edit"> Edit manual</label>
+      </span>
+    </div>
+    <div class="tools" id="tools" hidden>
+      <button type="button" id="tUndo">Urungkan</button>
+      <button type="button" id="tRedo">Ulangi</button>
+      <button type="button" id="tDup">Gandakan</button>
+      <button type="button" id="tFlip">Cermin</button>
+      <button type="button" id="tFront">Ke depan</button>
+      <button type="button" id="tBack">Ke belakang</button>
+      <button type="button" id="tCx">Tengah ↔</button>
+      <button type="button" id="tCy">Tengah ↕</button>
+      <button type="button" id="tDel" class="danger">Hapus</button>
+    </div>
   </div>
 </div>
 
-<details open>
-  <summary>Motif</summary>
+<details class="mc c-purple">
+  <summary><span class="mi"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg></span><span class="mt"><b>Motif</b><small>Tambah atau kelola elemen motif.</small></span><svg class="sps" aria-hidden="true"><use href="#spark"/></svg><svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
   <div class="body">
     <div class="btns">
       <label class="btn dark" for="files">Tambah gambar</label>
@@ -213,13 +408,15 @@
     </div>
     <label class="check"><input type="checkbox" id="stripBg" checked>
       <span>Buang latar polos kalau gambarnya tidak transparan (misalnya JPG)</span></label>
+    <label class="check"><input type="checkbox" id="splitSheet" checked>
+      <span>Pecah otomatis gambar berisi banyak objek (PNG, JPG, atau SVG) jadi motif terpisah</span></label>
     <div class="list" id="list"></div>
     <p class="note" id="listNote"></p>
   </div>
 </details>
 
-<details id="samples">
-  <summary>Contoh motif</summary>
+<details class="mc c-blue" id="samples">
+  <summary><span class="mi"><svg class="ic" aria-hidden="true"><use href="#i-grid"/></svg></span><span class="mt"><b>Contoh motif</b><small>Koleksi motif siap digunakan.</small></span><svg class="sps" aria-hidden="true"><use href="#spark"/></svg><svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
   <div class="body">
     <div class="chips" id="chips"></div>
     <div class="samples" id="sampleGrid"></div>
@@ -228,14 +425,17 @@
   </div>
 </details>
 
-<details open>
-  <summary>Tata letak</summary>
+<details class="mc c-green">
+  <summary><span class="mi"><svg class="ic" aria-hidden="true"><use href="#i-layout"/></svg></span><span class="mt"><b>Tata letak</b><small>Atur posisi, ukuran, dan jarak.</small></span><svg class="sps" aria-hidden="true"><use href="#spark"/></svg><svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
   <div class="body">
     <div class="fld"><span>Jenis hasil</span>
       <div class="seg" id="kind">
         <button type="button" data-k="pattern" aria-pressed="true">Pattern</button>
         <button type="button" data-k="one" aria-pressed="false">Satu gambar</button>
       </div></div>
+    <div id="oneCtl" hidden>
+      <label class="check"><input type="checkbox" id="oneWrap" checked><span>Sambung di tepi. Gambar yang melewati tepi muncul di sisi seberang, jadi hasil Repeat mulus dan tidak terpotong.</span></label>
+    </div>
     <div id="patCtl">
     <label class="fld"><span>Susunan</span>
       <select id="arr">
@@ -265,28 +465,26 @@
   </div>
 </details>
 
-<details id="repeatPanel">
-  <summary>Ulang komposisi jadi pattern</summary>
+<details class="mc c-orange" id="repeatPanel">
+  <summary><span class="mi"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span><span class="mt"><b>Repeat</b><small>Perbanyak seperti zoom out.</small></span><svg class="sps" aria-hidden="true"><use href="#spark"/></svg><svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
   <div class="body">
-    <p class="note" style="margin-top:0">Susun gambar di kanvas dulu (mode Satu gambar, atau Pattern dengan Edit manual). Lalu ulangi komposisinya seperti ubin. Setelah itu tiap gambar tetap bisa kamu geser satu per satu.</p>
-    <div class="ctl"><label for="rpCols">Kolom <output id="rpColsO"></output></label>
-      <input type="range" id="rpCols" min="1" max="8" step="1" value="3" data-item="1"></div>
-    <div class="ctl"><label for="rpRows">Baris <output id="rpRowsO"></output></label>
-      <input type="range" id="rpRows" min="1" max="8" step="1" value="3" data-item="1"></div>
-    <label class="fld"><span>Cara menyusun</span>
-      <select id="rpMode">
-        <option value="grid">Lurus (kisi)</option>
-        <option value="brick">Selang-seling baris (bata)</option>
-        <option value="drop">Selang-seling kolom (turun setengah)</option>
-      </select></label>
-    <div class="btns" style="margin-top:12px"><button class="btn primary" id="rpGo" type="button">Ulang jadi pattern</button></div>
-    <p class="note">Hasilnya otomatis nyambung di semua sisi (seamless). Cek di tab Cek sambungan. Mode selang-seling butuh jumlah baris atau kolom genap, jadi kalau ganjil kutambah satu.</p>
+    <p class="note" style="margin-top:0">Geser untuk memperbanyak komposisi. Seluruh gambar dikecilkan seperti zoom out lalu dijajar tanpa celah, bukan menyalin pinggirnya. 1× berarti tidak diulang.</p>
+    <div class="ctl"><label for="rpCols">Repeat <output id="rpColsO"></output></label>
+      <input type="range" id="rpCols" min="1" max="12" step="1" value="1" data-item="1" data-sfx="×"></div>
+    <div class="fld"><span>Titik fokus <output id="focusO" style="color:var(--accent)">Tengah</output></span>
+      <div class="focus" id="focusGrid">
+        <button type="button" aria-label="Kiri atas" aria-pressed="false"></button><button type="button" aria-label="Atas" aria-pressed="false"></button><button type="button" aria-label="Kanan atas" aria-pressed="false"></button>
+        <button type="button" aria-label="Kiri" aria-pressed="false"></button><button type="button" aria-label="Tengah" aria-pressed="true"></button><button type="button" aria-label="Kanan" aria-pressed="false"></button>
+        <button type="button" aria-label="Kiri bawah" aria-pressed="false"></button><button type="button" aria-label="Bawah" aria-pressed="false"></button><button type="button" aria-label="Kanan bawah" aria-pressed="false"></button>
+      </div></div>
+    <p class="note">Titik fokus adalah bagian gambar yang tetap di tempatnya waktu di-zoom out. Tengah cocok untuk kebanyakan gambar. Pilih sudut kalau mau gambar utama menempel di pojok.</p>
   </div>
 </details>
 
-<details id="editPanel">
-  <summary>Edit manual</summary>
+<details class="mc c-pink" id="editPanel">
+  <summary><span class="mi"><svg class="ic" aria-hidden="true"><use href="#i-pencil"/></svg></span><span class="mt"><b>Edit manual</b><small>Atur pattern secara bebas.</small></span><svg class="sps" aria-hidden="true"><use href="#spark"/></svg><svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
   <div class="body">
+    <div class="btns"><button class="btn shiftSeam" type="button">Geser sambungan ke tengah</button></div>
     <p class="note" id="selInfo" style="margin-top:0"></p>
     <div class="ctl"><label for="itemSize">Ukuran gambar <output id="itemSizeO"></output></label>
       <input type="range" id="itemSize" min="2" max="100" step="1" value="20" data-item="1" data-sfx="%" disabled></div>
@@ -310,8 +508,8 @@
   </div>
 </details>
 
-<details open>
-  <summary>Kanvas dan file</summary>
+<details class="mc c-teal">
+  <summary><span class="mi"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg></span><span class="mt"><b>Kanvas &amp; file</b><small>Atur ukuran, format, dan latar.</small></span><svg class="sps" aria-hidden="true"><use href="#spark"/></svg><svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
   <div class="body">
     <div class="fld"><span>Rasio kanvas</span>
       <div class="seg" id="aspect">
@@ -363,9 +561,20 @@
 </div>
 
 <div class="bar"><div class="in">
-  <button class="btn" id="shuffle" type="button">Acak ulang</button>
-  <button class="btn primary" id="export" type="button">Unduh</button>
+  <button class="btn ghost" id="shuffle" type="button"><svg class="ic" aria-hidden="true"><use href="#i-dice"/></svg><span class="lbl">Acak ulang</span><svg class="spk" aria-hidden="true"><use href="#spark"/></svg></button>
+  <button class="btn primary" id="export" type="button"><svg class="ic" aria-hidden="true"><use href="#i-dl"/></svg><span class="lbl">Unduh</span><svg class="spk" aria-hidden="true"><use href="#spark"/></svg></button>
 </div></div>
+<div class="sheet" id="sheet" hidden>
+  <div class="pane" role="dialog" aria-label="Pengaturan">
+    <div class="ph"><span>Pengaturan</span><button id="sheetX" type="button" aria-label="Tutup">×</button></div>
+    <p class="lab">Tampilan</p>
+    <div class="seg" id="modeSeg"><button type="button" data-v="light">Terang</button><button type="button" data-v="dark">Gelap</button><button type="button" data-v="auto">Otomatis</button></div>
+    <p class="lab">Tema warna</p>
+    <div class="themes" id="themeBox"></div>
+    <p class="lab">Tentang</p>
+    <p class="note" style="margin-top:0"><b>Reyedit</b>, Pattern &amp; Design Editor. Semua diproses di HP-mu. Motif dan hasil karyamu tidak dikirim ke internet.</p>
+  </div>
+</div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -376,6 +585,7 @@ const LONG = 384;       // sisi terpanjang grid kerja
 const PLONG = 720;      // sisi terpanjang pratinjau
 const MAXSRC = 1280;    // sisi terpanjang motif di memori
 const $ = id => document.getElementById(id);
+const setLbl = (b, t) => { const l = b.querySelector('.lbl'); (l || b).textContent = t; };
 
 let GW = LONG, GH = LONG, PW = PLONG, PH = PLONG;
 const state = { motifs: [], seed: Math.floor(Math.random() * 90000) + 10000, mode: 'preview',
@@ -536,9 +746,7 @@ function setAspect(key){
   const k = Math.sqrt(GW * GH) / oldU;
   if (Math.abs(k - 1) > 1e-6) new Set([state.items, state.stash.pattern, state.stash.one]).forEach(arr => arr.forEach(it => { it.sc *= k; }));
   occ = new Uint8Array(GW * GH);
-  prevC.width = view.width = PW; prevC.height = view.height = PH;
-  $('frame').style.aspectRatio = PW + ' / ' + PH;
-  $('frame').style.width = 'min(100%, calc(var(--fh) * ' + (PW / PH).toFixed(4) + '))';
+  prevC.width = PW; prevC.height = PH; EM = 0; applyViewSize();
   document.querySelectorAll('#aspect button').forEach(b2 => b2.setAttribute('aria-pressed', b2.dataset.a === key ? 'true' : 'false'));
   updateDims();
 }
@@ -696,25 +904,292 @@ async function addSvgMotif(name, text, defColor, place){
   if (place !== false && state.kind === 'one' && state.compStarted) addInstance(m);
 }
 
+// Pecah lembar stiker: satu gambar berisi banyak objek terpisah jadi motif sendiri-sendiri
+async function splitSheet(img, name){
+  const w0 = img.naturalWidth, h0 = img.naturalHeight;
+  if (!w0 || !h0 || Math.max(w0, h0) < 600) return null;
+  const k = Math.min(1, 3000 / Math.max(w0, h0));
+  const cw = Math.round(w0 * k), ch = Math.round(h0 * k);
+  const c = document.createElement('canvas'); c.width = cw; c.height = ch;
+  const cx = c.getContext('2d', { willReadFrequently: true });
+  cx.drawImage(img, 0, 0, cw, ch);
+  const d = cx.getImageData(0, 0, cw, ch), a = d.data;
+  if ($('stripBg').checked && isOpaque(a)) removeBg(d);
+  const s = Math.min(1, 640 / Math.max(cw, ch)), lw = Math.max(1, Math.round(cw * s)), lh = Math.max(1, Math.round(ch * s));
+  const base = new Uint8Array(lw * lh);
+  for (let y = 0; y < ch; y++){
+    const ly = Math.min(lh - 1, (y * s) | 0) * lw;
+    for (let x = 0; x < cw; x++) if (a[(y * cw + x) * 4 + 3] > 24) base[ly + Math.min(lw - 1, (x * s) | 0)] = 1;
+  }
+  const r = Math.max(1, Math.round(0.008 * Math.max(lw, lh)));
+  const tmp = new Uint8Array(lw * lh), dil = new Uint8Array(lw * lh);
+  for (let y = 0; y < lh; y++){
+    const row = y * lw; let run = -1;
+    for (let x = 0; x < lw; x++){ if (base[row + x]) run = x; if (run >= 0 && x - run <= r) tmp[row + x] = 1; }
+    run = -1;
+    for (let x = lw - 1; x >= 0; x--){ if (base[row + x]) run = x; if (run >= 0 && run - x <= r) tmp[row + x] = 1; }
+  }
+  for (let x = 0; x < lw; x++){
+    let run = -1;
+    for (let y = 0; y < lh; y++){ if (tmp[y * lw + x]) run = y; if (run >= 0 && y - run <= r) dil[y * lw + x] = 1; }
+    run = -1;
+    for (let y = lh - 1; y >= 0; y--){ if (tmp[y * lw + x]) run = y; if (run >= 0 && run - y <= r) dil[y * lw + x] = 1; }
+  }
+  const lab = new Int32Array(lw * lh), comps = [], st = []; let n = 0;
+  for (let i = 0; i < lw * lh; i++){
+    if (!dil[i] || lab[i]) continue;
+    n++; lab[i] = n; st.push(i);
+    const cp = { id: n, minx: lw, miny: lh, maxx: -1, maxy: -1, ink: 0 };
+    while (st.length){
+      const q = st.pop(), qx = q % lw, qy = (q / lw) | 0;
+      if (base[q]) cp.ink++;
+      if (qx < cp.minx) cp.minx = qx; if (qx > cp.maxx) cp.maxx = qx;
+      if (qy < cp.miny) cp.miny = qy; if (qy > cp.maxy) cp.maxy = qy;
+      if (qx > 0 && dil[q - 1] && !lab[q - 1]){ lab[q - 1] = n; st.push(q - 1); }
+      if (qx < lw - 1 && dil[q + 1] && !lab[q + 1]){ lab[q + 1] = n; st.push(q + 1); }
+      if (qy > 0 && dil[q - lw] && !lab[q - lw]){ lab[q - lw] = n; st.push(q - lw); }
+      if (qy < lh - 1 && dil[q + lw] && !lab[q + lw]){ lab[q + lw] = n; st.push(q + lw); }
+    }
+    comps.push(cp);
+  }
+  const md = Math.max(lw, lh);
+  const sig = comps.filter(cp => cp.ink >= 0.0012 * lw * lh && Math.min(cp.maxx - cp.minx, cp.maxy - cp.miny) >= 0.012 * md);
+  if (sig.length < 4) return null;
+  const map = new Int32Array(n + 1);
+  sig.forEach(cp => { map[cp.id] = cp.id; });
+  // Serpihan kecil (percikan, titik) digabung ke objek terdekat, kalau jauh dibuang
+  comps.forEach(cp => {
+    if (map[cp.id]) return;
+    let best = null, bd = 1e9;
+    for (const g of sig){
+      const dx = Math.max(0, cp.minx - g.maxx, g.minx - cp.maxx), dy = Math.max(0, cp.miny - g.maxy, g.miny - cp.maxy), dd = Math.hypot(dx, dy);
+      if (dd < bd){ bd = dd; best = g; }
+    }
+    if (best && bd <= 0.03 * md){
+      map[cp.id] = best.id;
+      best.minx = Math.min(best.minx, cp.minx); best.maxx = Math.max(best.maxx, cp.maxx);
+      best.miny = Math.min(best.miny, cp.miny); best.maxy = Math.max(best.maxy, cp.maxy);
+    }
+  });
+  sig.sort((p, q) => q.ink - p.ink);
+  const use = sig.slice(0, 120);
+  const medH = use.map(g => g.maxy - g.miny).sort((p, q) => p - q)[use.length >> 1] || 1;
+  use.sort((p, q) => { const rp = Math.floor((p.miny + p.maxy) / 2 / medH), rq = Math.floor((q.miny + q.maxy) / 2 / medH); return rp - rq || p.minx - q.minx; });
+  const pad = Math.max(2, Math.round(cw * 0.004)), out = [];
+  for (const cp of use){
+    const x0 = Math.max(0, Math.floor(cp.minx / s) - pad), y0 = Math.max(0, Math.floor(cp.miny / s) - pad);
+    const x1 = Math.min(cw, Math.ceil((cp.maxx + 1) / s) + pad), y1 = Math.min(ch, Math.ceil((cp.maxy + 1) / s) + pad);
+    const tw = x1 - x0, th = y1 - y0;
+    if (tw < 8 || th < 8) continue;
+    const tc = document.createElement('canvas'); tc.width = tw; tc.height = th;
+    const tx = tc.getContext('2d'), id = tx.createImageData(tw, th), o = id.data;
+    for (let y = 0; y < th; y++){
+      const ly = Math.min(lh - 1, ((y + y0) * s) | 0) * lw;
+      for (let x = 0; x < tw; x++){
+        const lb = lab[ly + Math.min(lw - 1, ((x + x0) * s) | 0)];
+        if (!lb || map[lb] !== cp.id) continue;
+        const si = ((y + y0) * cw + (x + x0)) * 4, di = (y * tw + x) * 4;
+        o[di] = a[si]; o[di + 1] = a[si + 1]; o[di + 2] = a[si + 2]; o[di + 3] = a[si + 3];
+      }
+    }
+    tx.putImageData(id, 0, 0);
+    const t = trimCanvas(tc);
+    if (!t) continue;
+    let cv = t.canvas; const mx = Math.max(cv.width, cv.height);
+    if (mx > MAXSRC){ const q = MAXSRC / mx, c2 = document.createElement('canvas'); c2.width = Math.round(cv.width * q); c2.height = Math.round(cv.height * q); const x2 = c2.getContext('2d'); x2.imageSmoothingQuality = 'high'; x2.drawImage(cv, 0, 0, c2.width, c2.height); cv = c2; }
+    out.push({ id: ++uid, name: name + ' ' + (out.length + 1), img: null, isSvg: false, count: 1, canvas: cv, w: cv.width, h: cv.height, thumb: makeThumb(cv), direct: false, vars: null, am: null });
+  }
+  c.width = c.height = 1;
+  return out.length >= 4 ? out : null;
+}
+
+// Pecah SVG yang berisi banyak objek (pack ikon) jadi beberapa SVG terpisah, tetap vektor
+async function splitSvgSheet(text){
+  const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+  const r0 = doc.documentElement;
+  if (!r0 || r0.localName !== 'svg' || doc.querySelector('parsererror')) return null;
+  let vb = (r0.getAttribute('viewBox') || '').trim().split(/[\s,]+/).map(Number);
+  if (vb.length !== 4 || vb.some(isNaN) || vb[2] <= 0 || vb[3] <= 0){
+    const w = parseFloat(r0.getAttribute('width')), h = parseFloat(r0.getAttribute('height'));
+    if (!(w > 0 && h > 0)) return null;
+    vb = [0, 0, w, h];
+  }
+  const k = 1000 / Math.max(vb[2], vb[3]), md = Math.max(vb[2], vb[3]);
+  const root = document.importNode(r0, true);
+  ['x', 'y', 'style'].forEach(a => root.removeAttribute(a));
+  root.setAttribute('viewBox', vb.join(' '));
+  root.setAttribute('width', vb[2] * k); root.setAttribute('height', vb[3] * k);
+  const host = document.createElement('div');
+  host.style.cssText = 'position:absolute;left:-99999px;top:0;width:' + (vb[2] * k) + 'px;height:' + (vb[3] * k) + 'px;overflow:hidden';
+  host.appendChild(root); document.body.appendChild(host);
+  try {
+    const NON = ['defs', 'style', 'title', 'desc', 'metadata', 'lineargradient', 'radialgradient', 'clippath', 'mask', 'symbol', 'pattern', 'filter', 'marker', 'script', 'namedview'];
+    const rendered = el => el.nodeType === 1 && NON.indexOf(el.localName.toLowerCase()) < 0;
+    const isG = el => el.localName === 'g' && el.children.length > 0;
+    const isMultiG = el => el.localName === 'g' && el.children.length >= 2;   // grup berisi beberapa bagian dianggap satu ikon utuh
+    const rr = root.getBoundingClientRect();
+    const makeBox = c => { const r = c.el.getBoundingClientRect(); return Object.assign(c, { x: vb[0] + (r.left - rr.left) / k, y: vb[1] + (r.top - rr.top) / k, w: r.width / k, h: r.height / k }); };
+    const kids = c => Array.from(c.el.children).filter(rendered).map(el => ({ el, chain: c.chain.concat(c.el) }));
+    // kandidat awal: anak langsung; turun ke dalam grup selama kandidat masih sedikit (misalnya satu grup "layer" atau beberapa grup baris)
+    const initial = () => { let c = Array.from(root.children).filter(rendered).map(el => ({ el, chain: [] }));
+      for (let d = 0; d < 6 && c.length < 4; d++){
+        if (!c.some(x => isG(x.el))) break;
+        const nx = []; c.forEach(x => { if (isG(x.el)) nx.push(...kids(x)); else nx.push(x); });
+        if (nx.length === c.length) break; c = nx;
+      } return c; };
+    const leaves = () => { let c = Array.from(root.children).filter(rendered).map(el => ({ el, chain: [] }));
+      for (let d = 0; d < 8; d++){
+        if (!c.some(x => isG(x.el))) break;
+        const nx = []; c.forEach(x => { if (isG(x.el)) nx.push(...kids(x)); else nx.push(x); }); c = nx;
+        if (c.length > 4000) return null;
+      } return c; };
+
+    const cluster = (cands, groupsAtomic) => {
+      if (!cands || cands.length < 4 || cands.length > 4000) return null;
+      let boxes = cands.map(makeBox).filter(b => b.w > 0 && b.h > 0 && isFinite(b.x + b.y + b.w + b.h));
+      const bgLess = boxes.filter(b => b.w * b.h < 0.85 * vb[2] * vb[3]);   // buang kotak latar yang menutupi seluruh kanvas
+      if (bgLess.length >= 4) boxes = bgLess;
+      if (boxes.length < 4) return null;
+      const gap = 0.012 * md, par = boxes.map((_, i) => i), find = i => par[i] === i ? i : (par[i] = find(par[i]));
+      for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++){
+        const a = boxes[i], b = boxes[j];
+        const touch = !(a.x > b.x + b.w + gap || b.x > a.x + a.w + gap || a.y > b.y + b.h + gap || b.y > a.y + a.h + gap);
+        if (!touch) continue;
+        if (groupsAtomic && isMultiG(a.el) && isMultiG(b.el)){      // dua grup yang berdekatan tetap objek terpisah, kecuali saling menutupi hampir penuh
+          const iw = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x), ih = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+          if (!(iw > 0 && ih > 0 && iw * ih > 0.6 * Math.min(a.w * a.h, b.w * b.h))) continue;
+        }
+        par[find(i)] = find(j);
+      }
+      const groups = new Map();
+      boxes.forEach((b, i) => { const g = find(i); if (!groups.has(g)) groups.set(g, []); groups.get(g).push(i); });
+      let cl = Array.from(groups.values()).map(idx => {
+        let x0 = 1e18, y0 = 1e18, x1 = -1e18, y1 = -1e18;
+        idx.forEach(i => { const b = boxes[i]; x0 = Math.min(x0, b.x); y0 = Math.min(y0, b.y); x1 = Math.max(x1, b.x + b.w); y1 = Math.max(y1, b.y + b.h); });
+        return { idx: idx.sort((p, q) => p - q), x0, y0, x1, y1, area: (x1 - x0) * (y1 - y0) };
+      }).filter(c => Math.max(c.x1 - c.x0, c.y1 - c.y0) >= 0.012 * md);
+      if (cl.length < 4) return null;
+      return { boxes, cl };
+    };
+    let res = cluster(initial(), true) || cluster(leaves(), false);
+    if (!res) return null;
+    let { boxes, cl } = res;
+    if (cl.length > 150) cl = cl.sort((p, q) => q.area - p.area).slice(0, 150);
+    const medH = cl.map(c => c.y1 - c.y0).sort((p, q) => p - q)[cl.length >> 1] || 1;
+    cl.sort((p, q) => { const rp = Math.floor((p.y0 + p.y1) / 2 / medH), rq = Math.floor((q.y0 + q.y1) / 2 / medH); return rp - rq || p.x0 - q.x0; });
+
+    const ser = new XMLSerializer(), NS = 'http://www.w3.org/2000/svg';
+    const defTags = ['lineargradient', 'radialgradient', 'clippath', 'mask', 'symbol', 'pattern', 'filter', 'marker'];
+    const defNodes = Array.from(root.querySelectorAll('*')).filter(e => e.id && defTags.indexOf(e.localName.toLowerCase()) >= 0);
+    const styles = Array.from(root.querySelectorAll('style')).map(e => ser.serializeToString(e)).join('');
+    const skipAttr = /^(width|height|viewBox|x|y|version|xmlns|id)$/;
+    let attrs = '';
+    Array.from(r0.attributes).forEach(a => { if (!skipAttr.test(a.name) && !/^xmlns/.test(a.name)) attrs += ' ' + a.name + '="' + a.value.replace(/"/g, '&quot;') + '"'; });
+    const out = [];
+    for (const c of cl){
+      const holder = document.createElementNS(NS, 'g');
+      c.idx.forEach(i => {   // tiap kandidat membawa rantai grup induknya (transform dan gaya tetap utuh)
+        const cand = boxes[i]; let top = null, cur = null;
+        cand.chain.forEach(a => { const n = a.cloneNode(false); if (cur) cur.appendChild(n); else top = n; cur = n; });
+        const leaf = cand.el.cloneNode(true);
+        if (cur){ cur.appendChild(leaf); holder.appendChild(top); } else holder.appendChild(leaf);
+      });
+      const body = ser.serializeToString(holder);
+      const need = new Set(); let scan = body, guard = 0;
+      while (guard++ < 6){
+        let added = false;
+        for (const m of scan.matchAll(/#([\w\-.:]+)/g)){
+          if (need.has(m[1])) continue;
+          const dn = defNodes.find(e => e.id === m[1]);
+          if (dn){ need.add(m[1]); scan += ser.serializeToString(dn); added = true; }
+        }
+        if (!added) break;
+      }
+      const defs = defNodes.filter(e => need.has(e.id)).map(e => ser.serializeToString(e)).join('');
+      const pad = 0.02 * Math.max(c.x1 - c.x0, c.y1 - c.y0);
+      const v = [c.x0 - pad, c.y0 - pad, c.x1 - c.x0 + 2 * pad, c.y1 - c.y0 + 2 * pad].map(z => Math.round(z * 1000) / 1000).join(' ');
+      out.push('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="' + v + '"' + attrs + '>' + styles + (defs ? '<defs>' + defs + '</defs>' : '') + body + '</svg>');
+    }
+    return out.length >= 4 ? out : null;
+  } finally { host.remove(); }
+}
+
+// SVG yang isinya gambar bitmap (atau tidak bisa dipecah per objek): gambar ke kanvas lalu pecah seperti lembar PNG
+async function splitSvgAsRaster(text, name){
+  const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+  const r = doc.documentElement;
+  if (!r || r.localName !== 'svg' || doc.querySelector('parsererror')) return null;
+  let vb = (r.getAttribute('viewBox') || '').trim().split(/[\s,]+/).map(Number);
+  if (vb.length !== 4 || vb.some(isNaN) || vb[2] <= 0 || vb[3] <= 0){
+    const w = parseFloat(r.getAttribute('width')), h = parseFloat(r.getAttribute('height'));
+    if (!(w > 0 && h > 0)) return null;
+    vb = [0, 0, w, h]; r.setAttribute('viewBox', vb.join(' '));
+  }
+  const k = 3000 / Math.max(vb[2], vb[3]);
+  r.setAttribute('width', Math.round(vb[2] * k)); r.setAttribute('height', Math.round(vb[3] * k));
+  const img = await loadImage(new Blob([new XMLSerializer().serializeToString(doc)], { type: 'image/svg+xml;charset=utf-8' }));
+  return splitSheet(img, name);
+}
+
 async function addFiles(fileList){
-  let bad = 0;
+  let bad = 0, pieces = 0, rasterNote = false;
+  const live = () => (state.kind === 'one' && state.compStarted) || (state.kind === 'pattern' && state.dirty);
   for (const f of fileList){
     try {
       const name = f.name.replace(/\.[^.]+$/, '');
       if (f.type === 'image/svg+xml' || /\.svg$/i.test(f.name)){
-        await addSvgMotif(name, await f.text());
+        const text = await f.text();
+        let done = false;
+        if ($('splitSheet').checked){
+          toast('Memeriksa isi SVG…', 1500);
+          await new Promise(r => setTimeout(r, 40));
+          let vparts = null, rparts = null;
+          try { vparts = await splitSvgSheet(text); } catch (e){ vparts = null; }
+          if (vparts){
+            let ok = 0;
+            for (let i = 0; i < vparts.length; i++){
+              try { await addSvgMotif(name + ' ' + (i + 1), vparts[i], undefined, false); ok++; } catch (e){ /* lewati bagian kosong */ }
+            }
+            if (ok >= 2){ pieces += ok; done = true; }
+          }
+          if (!done){
+            try { rparts = await splitSvgAsRaster(text, name); } catch (e){ rparts = null; }
+            if (rparts){ rparts.forEach(pm => state.motifs.push(pm)); state.sel = rparts[0].id; pieces += rparts.length; done = true; rasterNote = true; }
+          }
+        }
+        if (!done){
+          await addSvgMotif(name, text);
+          if (state.kind === 'pattern' && state.dirty){ const m = state.motifs[state.motifs.length - 1]; addInstance(m); }
+        }
       } else if (f.type.startsWith('image/')){
         const img = await loadImage(f);
+        let parts = null;
+        if ($('splitSheet').checked){
+          toast('Memeriksa isi gambar…', 1500);
+          await new Promise(r => setTimeout(r, 40));
+          try { parts = await splitSheet(img, name); } catch (e){ parts = null; }
+        }
+        if (parts){
+          parts.forEach(pm => state.motifs.push(pm));
+          state.sel = parts[0].id; pieces += parts.length;
+          continue;
+        }
         const m = { id: ++uid, name, img, isSvg: false, count: 3 };
         prepare(m);
         if (m.canvas){
           state.motifs.push(m); state.sel = m.id;
-          if (state.kind === 'one' && state.compStarted) addInstance(m);
+          if (live()) addInstance(m);
         } else bad++;
       } else bad++;
     } catch (e){ bad++; }
   }
-  if (bad) toast(bad + ' file tidak bisa dipakai (bukan gambar, atau kosong).');
+  if (pieces){
+    // Biar semua pecahan muat di pattern otomatis, kecilkan ukuran motif kalau perlu
+    const total = state.motifs.reduce((t, m) => t + (m.count || 0), 0), sz = $('size');
+    const target = Math.max(6, Math.min(20, Math.round(62 / Math.sqrt(Math.max(1, total)))));
+    if (+sz.value > target){ sz.value = target; sz.dispatchEvent(new Event('input', { bubbles: true })); }
+    toast(rasterNote ? 'SVG ini tidak bisa dipecah per objek (isinya satu bentuk gabungan atau gambar bitmap), jadi dipecah sebagai gambar PNG: ' + pieces + ' motif.' : 'Gambar dipecah jadi ' + pieces + ' motif. Atur otomatis di Pattern, atau susun sendiri lewat Edit manual.', rasterNote ? 7000 : 5200);
+  } else if (bad) toast(bad + ' file tidak bisa dipakai (bukan gambar, atau kosong).');
   renderList(); schedule(true);
 }
 
@@ -863,6 +1338,204 @@ function buildSamples(){
     ['Pita natal', SVG('<path fill="#D62828" d="M50 46C30 18 4 26 12 50C18 66 40 58 50 46Z"/><path fill="#D62828" d="M50 46C70 18 96 26 88 50C82 66 60 58 50 46Z"/><polygon fill="#B01E1E" points="46,52 30,92 44,84 50,94 56,84 70,92 54,52"/><circle cx="50" cy="48" r="9" fill="#962D22"/>')]
   ].map(([n, v]) => [n, v, null]);
 
+  // ----- Halloween, Tahun Baru, dan tambahan Natal -----
+  const webSvg = () => {
+    let o = '<g stroke="#8D93AD" stroke-width="2.2" fill="none" stroke-linecap="round">';
+    for (let i = 0; i < 8; i++){ const a = i * Math.PI / 4; o += '<path d="M50 50L' + (50 + 44 * Math.cos(a)).toFixed(1) + ' ' + (50 + 44 * Math.sin(a)).toFixed(1) + '"/>'; }
+    [14, 26, 38].forEach(r => {
+      let d = '';
+      for (let i = 0; i < 8; i++){
+        const a = i * Math.PI / 4, b = (i + 1) * Math.PI / 4, mm = (a + b) / 2;
+        const p = [50 + r * Math.cos(a), 50 + r * Math.sin(a)], q = [50 + r * .84 * Math.cos(mm), 50 + r * .84 * Math.sin(mm)], e = [50 + r * Math.cos(b), 50 + r * Math.sin(b)];
+        d += (i ? '' : 'M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1)) + 'Q' + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + ' ' + e[0].toFixed(1) + ' ' + e[1].toFixed(1);
+      }
+      o += '<path d="' + d + '"/>';
+    });
+    return o + '</g>';
+  };
+  const pie = (cx, cy, r, n, c1, c2) => Array.from({ length: n }, (_, i) => {
+    const a1 = i * 2 * Math.PI / n, a2 = (i + 1) * 2 * Math.PI / n;
+    return '<path fill="' + (i % 2 ? c2 : c1) + '" d="M' + cx + ' ' + cy + 'L' + (cx + r * Math.cos(a1)).toFixed(1) + ' ' + (cy + r * Math.sin(a1)).toFixed(1) + 'A' + r + ' ' + r + ' 0 0 1 ' + (cx + r * Math.cos(a2)).toFixed(1) + ' ' + (cy + r * Math.sin(a2)).toFixed(1) + 'Z"/>';
+  }).join('');
+  const burst = (cx, cy, n, r1, r2, cols, w) => Array.from({ length: n }, (_, i) => {
+    const a = i * 2 * Math.PI / n, c = cols[i % cols.length];
+    return '<path d="M' + (cx + r1 * Math.cos(a)).toFixed(1) + ' ' + (cy + r1 * Math.sin(a)).toFixed(1) + 'L' + (cx + r2 * Math.cos(a)).toFixed(1) + ' ' + (cy + r2 * Math.sin(a)).toFixed(1) + '" stroke="' + c + '" stroke-width="' + w + '" stroke-linecap="round" fill="none"/><circle cx="' + (cx + (r2 + 6) * Math.cos(a)).toFixed(1) + '" cy="' + (cy + (r2 + 6) * Math.sin(a)).toFixed(1) + '" r="' + (w * .55).toFixed(1) + '" fill="' + c + '"/>';
+  }).join('');
+  const sparkle = (cx, cy, s, col) => '<path fill="' + col + '" transform="translate(' + cx + ' ' + cy + ') scale(' + s + ')" d="M0 -10C1 -3 3 -1 10 0C3 1 1 3 0 10C-1 3 -3 1 -10 0C-3 -1 -1 -3 0 -10Z"/>';
+  const seg = { a: [0, 0, 1, 0], b: [1, 0, 1, 1], c: [1, 1, 1, 2], d: [0, 2, 1, 2], e: [0, 1, 0, 2], f: [0, 0, 0, 1], g: [0, 1, 1, 1] };
+  const digit = (ch, x0) => ({ '2': 'abged', '0': 'abcdef', '7': 'abc' }[ch] || '').split('').map(k => {
+    const s = seg[k]; return 'M' + (x0 + s[0] * 12) + ' ' + (32 + s[1] * 18) + 'L' + (x0 + s[2] * 12) + ' ' + (32 + s[3] * 18);
+  }).join('');
+  const hornHW = y => 4 + (92 - y) / 58 * 18;
+  const hornStripe = (a, b, col) => '<polygon fill="' + col + '" points="' + (50 - hornHW(a)) + ',' + a + ' ' + (50 + hornHW(a)) + ',' + a + ' ' + (50 + hornHW(b)) + ',' + b + ' ' + (50 - hornHW(b)) + ',' + b + '"/>';
+  const hatHW = y => (y - 8) / 76 * 36;
+  const hatBand = (a, b, col) => '<polygon fill="' + col + '" points="' + (50 - hatHW(a)).toFixed(1) + ',' + a + ' ' + (50 + hatHW(a)).toFixed(1) + ',' + a + ' ' + (50 + hatHW(b)).toFixed(1) + ',' + b + ' ' + (50 - hatHW(b)).toFixed(1) + ',' + b + '"/>';
+  const flute = '<path fill="#E3F2FC" stroke="#8DB8D6" stroke-width="2.5" stroke-linejoin="round" d="M-9 -34H9L7 4C7 12 3 16 0 16C-3 16 -7 12 -7 4Z"/><path fill="#F6C343" d="M-8 -18H8L7 4C7 11 3 15 0 15C-3 15 -7 11 -7 4Z"/><rect x="-1.6" y="16" width="3.2" height="20" fill="#8DB8D6"/><ellipse cx="0" cy="37" rx="9" ry="3" fill="#8DB8D6"/>';
+  const discoChords = (() => {
+    const cx = 50, cy = 58, r = 36; let o = '<g stroke="#7F8AA6" stroke-width="1.6" fill="none">';
+    for (let d = -27; d <= 27; d += 9){ const h = Math.sqrt(r * r - d * d); o += '<path d="M' + (cx - h).toFixed(1) + ' ' + (cy + d) + 'H' + (cx + h).toFixed(1) + 'M' + (cx + d) + ' ' + (cy - h).toFixed(1) + 'V' + (cy + h).toFixed(1) + '"/>'; }
+    return o + '</g>';
+  })();
+  const snowTier = (tipY, baseY, halfW, col) => {
+    const f = .45, ym = tipY + (baseY - tipY) * f, hm = halfW * f;
+    return '<polygon fill="' + col + '" points="50,' + tipY + ' ' + (50 + halfW) + ',' + baseY + ' ' + (50 - halfW) + ',' + baseY + '"/><polygon fill="#EAF4FB" stroke="#BFD7EA" stroke-width="1.5" stroke-linejoin="round" points="50,' + tipY + ' ' + (50 + hm).toFixed(1) + ',' + ym.toFixed(1) + ' ' + (50 + hm * .5).toFixed(1) + ',' + (ym + 4).toFixed(1) + ' ' + (50 + hm * .15).toFixed(1) + ',' + (ym - 1).toFixed(1) + ' ' + (50 - hm * .2).toFixed(1) + ',' + (ym + 4).toFixed(1) + ' ' + (50 - hm * .55).toFixed(1) + ',' + (ym - 1).toFixed(1) + ' ' + (50 - hm).toFixed(1) + ',' + (ym + 2).toFixed(1) + '"/>';
+  };
+  const bellD = 'M0 -22C10 -22 14 -14 14 -4C14 6 20 12 24 20H-24C-20 12 -14 6 -14 -4C-14 -14 -10 -22 0 -22Z';
+  const halloween = [
+    ['Labu seram', SVG('<rect x="46" y="8" width="9" height="18" rx="3" fill="#4C7A3A" transform="rotate(8 50 18)"/><ellipse cx="50" cy="58" rx="42" ry="32" fill="#E27619"/><ellipse cx="28" cy="58" rx="22" ry="31" fill="#F28C28"/><ellipse cx="72" cy="58" rx="22" ry="31" fill="#F28C28"/><ellipse cx="50" cy="58" rx="18" ry="32" fill="#F6A04D"/><polygon fill="#3B1F0B" points="27,50 41,50 34,38"/><polygon fill="#3B1F0B" points="59,50 73,50 66,38"/><polygon fill="#3B1F0B" points="50,56 45,64 55,64"/><path fill="#3B1F0B" d="M26 68L34 80L40 70L46 82L52 70L58 82L64 70L70 80L76 68C66 76 36 76 26 68Z"/>')],
+    ['Hantu', SVG('<path fill="#F5F6FA" stroke="#8D93AD" stroke-width="3" stroke-linejoin="round" d="M20 90V46C20 24 34 10 50 10C66 10 80 24 80 46V90L70 80L60 90L50 80L40 90L30 80Z"/><ellipse cx="40" cy="44" rx="5.5" ry="8" fill="#2B2B3A"/><ellipse cx="60" cy="44" rx="5.5" ry="8" fill="#2B2B3A"/><ellipse cx="50" cy="62" rx="6" ry="8" fill="#2B2B3A"/>')],
+    ['Kucing hitam', SVG('<path d="M76 84C94 84 98 62 88 54" fill="none" stroke="#2B2B2B" stroke-width="7" stroke-linecap="round"/><path fill="#2B2B2B" d="M24 90C14 70 22 50 38 44C30 36 32 26 36 12L46 24C50 23 54 23 58 24L68 12C72 26 70 36 62 44C78 50 86 70 76 90Z"/><g fill="#F6C343"><ellipse cx="42" cy="36" rx="4.5" ry="6"/><ellipse cx="60" cy="36" rx="4.5" ry="6"/></g><g fill="#2B2B2B"><ellipse cx="42" cy="36" rx="1.6" ry="5"/><ellipse cx="60" cy="36" rx="1.6" ry="5"/></g>')],
+    ['Kelelawar', SVG('<path fill="#3B2A5A" d="M50 40C56 40 58 34 60 28C64 36 66 40 70 42C78 30 90 28 98 36C92 38 90 46 86 52C82 48 76 48 72 54C68 50 62 52 60 58C58 70 54 76 50 82C46 76 42 70 40 58C38 52 32 50 28 54C24 48 18 48 14 52C10 46 8 38 2 36C10 28 22 30 30 42C34 40 36 36 40 28C42 34 44 40 50 40Z"/><g fill="#F6C343"><circle cx="45" cy="46" r="2"/><circle cx="55" cy="46" r="2"/></g>')],
+    ['Laba-laba', SVG('<path d="M50 0V34" stroke="#8D93AD" stroke-width="2" fill="none"/><g stroke="#2B2B2B" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M42 46L24 36L14 48M42 52L20 54L10 68M44 58L28 72L24 88M46 62L40 80L38 94"/><path d="M58 46L76 36L86 48M58 52L80 54L90 68M56 58L72 72L76 88M54 62L60 80L62 94"/></g><ellipse cx="50" cy="56" rx="14" ry="18" fill="#2B2B2B"/><circle cx="50" cy="42" r="10" fill="#2B2B2B"/><g fill="#D62828"><circle cx="46" cy="40" r="2.2"/><circle cx="54" cy="40" r="2.2"/></g>')],
+    ['Jaring laba-laba', SVG(webSvg())],
+    ['Topi penyihir', SVG('<path fill="#6B3FA0" d="M50 6C54 26 62 46 74 70H26C38 46 46 26 50 6Z"/><path fill="#4E2C80" d="M8 76C22 66 78 66 92 76C92 86 76 90 50 90C24 90 8 86 8 76Z"/><rect x="31" y="56" width="38" height="11" fill="#2B2B2B"/><rect x="44" y="55" width="12" height="13" rx="2" fill="none" stroke="#F6C343" stroke-width="3"/><polygon fill="#F6C343" points="' + star(46, 36, 6, 2.6, 5) + '"/><polygon fill="#F6C343" points="' + star(56, 24, 4, 1.8, 5) + '"/>')],
+    ['Sapu terbang', SVG('<path d="M8 22L64 60" stroke="#8A5A2B" stroke-width="5" stroke-linecap="round" fill="none"/><g stroke="#D9A441" stroke-width="5" stroke-linecap="round" fill="none"><path d="M66 62L96 50M66 62L98 60M66 62L96 70M66 62L88 82M66 62L74 88"/></g><path d="M58 52L72 72" stroke="#5B3A29" stroke-width="5" stroke-linecap="round" fill="none"/>')],
+    ['Kuali', SVG('<g fill="#1F1F28"><path d="M12 44C12 40 16 38 20 38H80C84 38 88 40 88 44C94 52 94 70 82 80C74 88 26 88 18 80C6 70 6 52 12 44Z"/><rect x="24" y="84" width="8" height="10" rx="3"/><rect x="68" y="84" width="8" height="10" rx="3"/></g><ellipse cx="50" cy="38" rx="34" ry="8" fill="#6BBF59" stroke="#1F1F28" stroke-width="4"/><g fill="#8EDB74"><circle cx="38" cy="26" r="6"/><circle cx="56" cy="20" r="8"/><circle cx="68" cy="30" r="4.5"/><circle cx="50" cy="34" r="3"/></g>')],
+    ['Tengkorak', SVG('<path fill="#F3EFE6" stroke="#2B2B2B" stroke-width="3.5" stroke-linejoin="round" d="M50 8C28 8 16 24 16 42C16 54 22 60 28 64V80C28 84 31 86 35 86H65C69 86 72 84 72 80V64C78 60 84 54 84 42C84 24 72 8 50 8Z"/><g fill="#2B2B2B"><ellipse cx="36" cy="46" rx="9" ry="11"/><ellipse cx="64" cy="46" rx="9" ry="11"/><polygon points="50,56 45,66 55,66"/></g><path d="M40 86V74M50 86V74M60 86V74" stroke="#2B2B2B" stroke-width="3" fill="none"/>')],
+    ['Permen jagung', SVG('<g stroke-linejoin="round" stroke-width="7"><polygon fill="#F6C343" stroke="#F6C343" points="16,88 84,88 73,62 27,62"/><polygon fill="#F28C28" stroke="#F28C28" points="29,62 71,62 62,38 38,38"/><polygon fill="#FFF8EC" stroke="#FFF8EC" points="40,38 60,38 50,14"/></g><path d="M40 38H60" stroke="#E5DCC8" stroke-width="1.5" fill="none"/>')],
+    ['Lolipop', SVG('<rect x="47" y="52" width="6" height="42" rx="3" fill="#F3E3C3" stroke="#BFAE8C" stroke-width="1.5"/><circle cx="50" cy="34" r="29" fill="#FFF8EC" stroke="#BFAE8C" stroke-width="2"/>' + pie(50, 34, 26, 10, '#F28C28', '#6B3FA0'))],
+    ['Rumah hantu', SVG('<g fill="#2B2B3A"><rect x="14" y="48" width="72" height="42"/><polygon points="8,50 50,22 92,50"/><rect x="64" y="14" width="14" height="40"/><polygon points="60,16 71,2 82,16"/></g><g fill="#F6C343"><rect x="22" y="58" width="12" height="14"/><rect x="66" y="58" width="12" height="14"/><rect x="67" y="26" width="6" height="10"/></g><path fill="#14141C" d="M42 90V76C42 68 58 68 58 76V90Z"/>')],
+    ['Bulan purnama', SVG('<circle cx="50" cy="50" r="42" fill="#F6D860"/><g fill="#E8C443"><circle cx="34" cy="38" r="8"/><circle cx="62" cy="30" r="5"/><circle cx="60" cy="62" r="10"/><circle cx="32" cy="66" r="4.5"/></g>')],
+    ['Batu nisan', SVG('<path fill="#8D93A3" stroke="#5E6475" stroke-width="3" stroke-linejoin="round" d="M22 88V40C22 22 34 10 50 10C66 10 78 22 78 40V88Z"/><rect x="8" y="84" width="84" height="9" rx="3" fill="#5E6475"/><g fill="#4B5060"><rect x="46" y="26" width="8" height="26" rx="1"/><rect x="38" y="33" width="24" height="8" rx="1"/></g><path d="M34 62L44 66L40 72M62 60L66 70" stroke="#5E6475" stroke-width="2.5" fill="none" stroke-linecap="round"/>')],
+    ['Mumi', SVG('<ellipse cx="50" cy="50" rx="36" ry="42" fill="#EDE3CC" stroke="#A89A78" stroke-width="3"/><g stroke="#A89A78" stroke-width="3" stroke-linecap="round" fill="none"><path d="M16 30L84 20M14 52L86 40M18 68L82 58M30 82L72 76"/></g><rect x="22" y="38" width="56" height="14" rx="7" fill="#2B2B2B"/><circle cx="38" cy="45" r="6" fill="#FFFDF5"/><circle cx="62" cy="45" r="6" fill="#FFFDF5"/><circle cx="39" cy="45" r="2.6" fill="#2B2B2B"/><circle cx="61" cy="45" r="2.6" fill="#2B2B2B"/>')],
+    ['Frankenstein', SVG('<rect x="10" y="50" width="10" height="12" rx="3" fill="#8A8F99"/><rect x="80" y="50" width="10" height="12" rx="3" fill="#8A8F99"/><rect x="18" y="14" width="64" height="74" rx="10" fill="#7FBF6A"/><path fill="#2F3B2A" d="M18 36C18 12 30 12 50 12C70 12 82 12 82 36C70 30 30 30 18 36Z"/><path d="M56 22L64 32M60 32L64 22" stroke="#4C7A3A" stroke-width="2.5" fill="none" stroke-linecap="round"/><g fill="#FFFDF5"><circle cx="38" cy="48" r="7"/><circle cx="62" cy="48" r="7"/></g><g fill="#2B2B2B"><circle cx="39" cy="49" r="3"/><circle cx="61" cy="49" r="3"/></g><path d="M34 74H66" stroke="#2B2B2B" stroke-width="3.5" stroke-linecap="round"/><path d="M40 70V78M50 70V78M60 70V78" stroke="#2B2B2B" stroke-width="2.5"/>')],
+    ['Dracula', SVG('<polygon fill="#1B1B24" points="8,92 34,66 48,92"/><polygon fill="#1B1B24" points="92,92 66,66 52,92"/><ellipse cx="50" cy="50" rx="28" ry="32" fill="#E9E4EE"/><path fill="#1B1B24" d="M20 48C16 18 34 6 50 6C66 6 84 18 80 48C72 34 60 30 50 42C40 30 28 34 20 48Z"/><g fill="#D62828"><circle cx="38" cy="52" r="4"/><circle cx="62" cy="52" r="4"/></g><path d="M36 68Q50 76 64 68" stroke="#1B1B24" stroke-width="3" fill="none" stroke-linecap="round"/><g fill="#fff" stroke="#BDB6C4" stroke-width="1.5"><polygon points="42,70 46,70 44,80"/><polygon points="54,70 58,70 56,80"/></g>')],
+    ['Ramuan', SVG('<rect x="42" y="4" width="16" height="12" rx="3" fill="#8A5A2B"/><rect x="40" y="14" width="20" height="16" rx="2" fill="#D9E8F5" stroke="#8D93AD" stroke-width="2.5"/><path fill="#D9E8F5" stroke="#8D93AD" stroke-width="2.5" stroke-linejoin="round" d="M40 30C40 44 14 56 14 76C14 88 24 94 50 94C76 94 86 88 86 76C86 56 60 44 60 30Z"/><path fill="#8A4FD6" d="M20 70C30 64 40 74 50 68C60 62 72 74 80 66C84 86 76 90 50 90C24 90 18 84 20 70Z"/><g fill="#C9A7F5"><circle cx="40" cy="78" r="4"/><circle cx="58" cy="80" r="3"/><circle cx="66" cy="72" r="2.6"/></g>')],
+    ['Bola mata', SVG('<circle cx="50" cy="50" r="40" fill="#FFFDF5" stroke="#B9B2A0" stroke-width="3"/><g stroke="#D1495B" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M14 56L30 50L34 42M20 72L34 62M80 30L68 40L66 48M86 48L70 52M72 84L64 68"/></g><circle cx="52" cy="50" r="17" fill="#4FA85A"/><circle cx="52" cy="50" r="9" fill="#1B1B24"/><circle cx="47" cy="44" r="3.6" fill="#fff"/>')],
+    ['Pohon seram', SVG('<g stroke="#2B2B3A" stroke-linecap="round" fill="none"><path d="M46 94C48 72 44 60 50 40" stroke-width="11"/><path d="M48 66L24 50L12 52M50 52L74 38L88 34M50 44L34 26L30 10M52 38L64 22L72 8" stroke-width="5"/><path d="M24 50L20 38M74 38L80 26M34 26L22 20M64 22L56 10M12 52L8 44" stroke-width="3"/></g><rect x="26" y="92" width="48" height="4" rx="2" fill="#2B2B3A"/>')],
+    ['Monster mata satu', SVG('<polygon fill="#8E5CC8" points="28,18 22,2 40,12"/><polygon fill="#8E5CC8" points="72,18 78,2 60,12"/><path fill="#8E5CC8" d="M50 8C76 8 90 30 90 56C90 80 76 92 50 92C24 92 10 80 10 56C10 30 24 8 50 8Z"/><circle cx="50" cy="44" r="20" fill="#FFFDF5"/><circle cx="52" cy="46" r="10" fill="#6BBF59"/><circle cx="52" cy="46" r="5" fill="#1B1B24"/><path fill="#1B1B24" d="M26 68Q50 92 74 68Q50 78 26 68Z"/><g fill="#fff"><polygon points="34,71 40,73 36,79"/><polygon points="66,71 60,73 64,79"/></g>')]
+  ].map(([n, v]) => [n, v, null]);
+  const tahunbaru = [
+    ['Kembang api bulat', SVG(burst(50, 50, 16, 10, 32, ['#F6C343', '#E8508A', '#4FC3F7'], 4) + '<circle cx="50" cy="50" r="5" fill="#F6C343"/>')],
+    ['Kembang api bunga', SVG('<g transform="translate(50 50)">' + Array.from({ length: 10 }, (_, i) => '<g transform="rotate(' + (i * 36) + ')"><path d="M0 -6Q9 -24 0 -40" stroke="' + ['#E8508A', '#F6C343', '#4FC3F7', '#7BD88F', '#B07CF0'][i % 5] + '" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="0" cy="-43" r="3.6" fill="' + ['#E8508A', '#F6C343', '#4FC3F7', '#7BD88F', '#B07CF0'][i % 5] + '"/></g>').join('') + '<circle r="6" fill="#F6C343"/></g>')],
+    ['Terompet', SVG('<g transform="rotate(28 50 60)"><polygon fill="#D62828" points="' + (50 - hornHW(92)) + ',92 ' + (50 + hornHW(92)) + ',92 ' + (50 + hornHW(34)) + ',34 ' + (50 - hornHW(34)) + ',34"/>' + hornStripe(84, 78, '#F6C343') + hornStripe(70, 64, '#F6C343') + hornStripe(56, 50, '#F6C343') + hornStripe(44, 38, '#F6C343') + '<ellipse cx="50" cy="34" rx="22" ry="6" fill="#8E1F14"/><g fill="none" stroke-linecap="round" stroke-width="3.5"><path d="M38 32C28 20 46 16 38 6" stroke="#4FC3F7"/><path d="M50 30C46 18 62 14 56 4" stroke="#E8508A"/><path d="M62 32C70 22 56 16 66 8" stroke="#7BD88F"/></g></g>')],
+    ['Topi pesta', SVG('<polygon fill="#E8508A" points="50,8 86,84 14,84"/>' + hatBand(30, 42, '#F6C343') + hatBand(56, 66, '#F6C343') + '<g fill="#fff"><circle cx="50" cy="52" r="3"/><circle cx="44" cy="76" r="3"/><circle cx="58" cy="76" r="3"/><circle cx="50" cy="24" r="2.4"/></g><ellipse cx="50" cy="85" rx="38" ry="7" fill="#4FC3F7"/><circle cx="50" cy="8" r="8" fill="#F6C343"/>')],
+    ['Konfeti', SVG([[14, 18, 20, 'r', '#E8508A'], [38, 10, -30, 'c', '#F6C343'], [64, 20, 40, 'r', '#4FC3F7'], [86, 14, 10, 't', '#7BD88F'], [24, 40, -20, 't', '#B07CF0'], [52, 38, 30, 'r', '#F6C343'], [78, 44, -40, 'c', '#E8508A'], [12, 62, 50, 'c', '#4FC3F7'], [36, 66, 10, 'r', '#7BD88F'], [62, 62, -20, 't', '#E8508A'], [88, 70, 30, 'r', '#F6C343'], [20, 86, -30, 'r', '#B07CF0'], [48, 88, 20, 'c', '#4FC3F7'], [74, 90, 60, 't', '#7BD88F']].map(([x, y, r, k, c]) => k === 'r' ? '<rect x="' + (x - 6) + '" y="' + (y - 3) + '" width="12" height="6" rx="1" fill="' + c + '" transform="rotate(' + r + ' ' + x + ' ' + y + ')"/>' : k === 'c' ? '<circle cx="' + x + '" cy="' + y + '" r="4.5" fill="' + c + '"/>' : '<polygon fill="' + c + '" points="' + x + ',' + (y - 6) + ' ' + (x + 6) + ',' + (y + 5) + ' ' + (x - 6) + ',' + (y + 5) + '" transform="rotate(' + r + ' ' + x + ' ' + y + ')"/>').join(''))],
+    ['Balon', SVG('<path d="M50 74C46 82 54 88 50 96" stroke="#8D93AD" stroke-width="2" fill="none" stroke-linecap="round"/><path fill="#D62828" d="M50 8C72 8 84 26 84 44C84 62 66 74 50 74C34 74 16 62 16 44C16 26 28 8 50 8Z"/><polygon fill="#B01E1E" points="50,72 43,81 57,81"/><ellipse cx="34" cy="28" rx="6" ry="11" transform="rotate(30 34 28)" fill="#F08A80"/>')],
+    ['Balon tiga', SVG('<g fill="none" stroke="#8D93AD" stroke-width="1.8" stroke-linecap="round"><path d="M28 56C34 76 46 84 50 96M50 48C50 70 50 84 50 96M72 56C66 76 54 84 50 96"/></g><ellipse cx="28" cy="34" rx="18" ry="22" fill="#D62828"/><ellipse cx="50" cy="26" rx="18" ry="22" fill="#F6C343"/><ellipse cx="72" cy="34" rx="18" ry="22" fill="#2FA6B8"/><g fill="#8E1F14"><polygon points="28,55 24,60 32,60"/></g><polygon fill="#C99A1C" points="50,47 46,52 54,52"/><polygon fill="#1B7E8E" points="72,55 68,60 76,60"/><ellipse cx="21" cy="26" rx="3.6" ry="7" transform="rotate(25 21 26)" fill="#F08A80"/><ellipse cx="43" cy="18" rx="3.6" ry="7" transform="rotate(25 43 18)" fill="#FBE08A"/>')],
+    ['Jam tengah malam', SVG('<circle cx="50" cy="50" r="42" fill="#F6C343" stroke="#B8860B" stroke-width="4"/><circle cx="50" cy="50" r="34" fill="#FFF8E1"/><g stroke="#2B2B3A" stroke-width="3" stroke-linecap="round">' + Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6, r1 = i % 3 ? 28 : 25; return '<path d="M' + (50 + r1 * Math.cos(a)).toFixed(1) + ' ' + (50 + r1 * Math.sin(a)).toFixed(1) + 'L' + (50 + 31 * Math.cos(a)).toFixed(1) + ' ' + (50 + 31 * Math.sin(a)).toFixed(1) + '"/>'; }).join('') + '</g><path d="M50 50V30" stroke="#2B2B3A" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M50 50V20" stroke="#D62828" stroke-width="3.5" stroke-linecap="round" fill="none"/><circle cx="50" cy="50" r="4.5" fill="#2B2B3A"/>')],
+    ['Botol sampanye', SVG('<rect x="36" y="42" width="28" height="50" rx="6" fill="#2F5D3A"/><polygon fill="#2F5D3A" points="43,42 57,42 55,22 45,22"/><rect x="41" y="14" width="18" height="14" rx="2" fill="#F6C343"/><rect x="36" y="60" width="28" height="18" fill="#FFF3D6"/><circle cx="50" cy="69" r="4" fill="#C99A1C"/><ellipse cx="70" cy="10" rx="6" ry="4" transform="rotate(-30 70 10)" fill="#C9A46A"/><g fill="#F6C343"><circle cx="30" cy="20" r="3"/><circle cx="72" cy="30" r="3.6"/><circle cx="26" cy="34" r="2.2"/><circle cx="80" cy="18" r="2.4"/></g>')],
+    ['Gelas sampanye', SVG('<g transform="translate(34 52) rotate(-16) scale(1.1)">' + flute + '</g><g transform="translate(66 52) rotate(16) scale(1.1)">' + flute + '</g>' + sparkle(50, 18, 1.1, '#F6C343') + sparkle(36, 8, .6, '#E8508A') + sparkle(64, 10, .6, '#4FC3F7'))],
+    ['Angka 2027', SVG('<rect x="2" y="20" width="96" height="60" rx="12" fill="#1F2A5A"/><path d="' + digit('2', 11) + digit('0', 32) + digit('2', 53) + digit('7', 74) + '" stroke="#F6C343" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>')],
+    ['Bintang kilau', SVG('<path fill="#F6C343" d="M50 4C54 32 68 46 96 50C68 54 54 68 50 96C46 68 32 54 4 50C32 46 46 32 50 4Z"/>' + sparkle(82, 18, 1.2, '#E8508A') + sparkle(16, 82, 1.1, '#4FC3F7') + sparkle(84, 84, .8, '#7BD88F'))],
+    ['Serpentin', SVG('<g fill="none" stroke-width="6" stroke-linecap="round"><path d="M8 26C24 4 34 52 50 28S76 4 92 30" stroke="#E8508A"/><path d="M8 54C24 32 34 80 50 56S76 32 92 58" stroke="#2FA6B8"/><path d="M8 82C24 60 34 98 50 82S74 62 90 84" stroke="#F6C343"/></g>')],
+    ['Topeng pesta', SVG('<g transform="translate(2 8) scale(.9)"><ellipse cx="86" cy="26" rx="5" ry="18" transform="rotate(35 86 26)" fill="#F6C343"/><ellipse cx="94" cy="34" rx="4" ry="14" transform="rotate(55 94 34)" fill="#2FA6B8"/><ellipse cx="78" cy="22" rx="4" ry="14" transform="rotate(15 78 22)" fill="#E8508A"/><path fill="#6B3FA0" fill-rule="evenodd" stroke="#F6C343" stroke-width="3" stroke-linejoin="round" d="M4 46C16 28 34 34 50 38C66 34 84 28 96 46C94 66 78 72 66 64C60 60 56 54 50 54C44 54 40 60 34 64C22 72 6 66 4 46Z M22 50C26 44 38 44 42 50C38 58 26 58 22 50Z M58 50C62 44 74 44 78 50C74 58 62 58 58 50Z"/><g fill="#F6C343"><circle cx="50" cy="45" r="3"/><circle cx="12" cy="46" r="2.4"/><circle cx="88" cy="46" r="2.4"/></g></g>')],
+    ['Kue tart', SVG('<ellipse cx="50" cy="90" rx="44" ry="6" fill="#D9D2C3"/><rect x="16" y="54" width="68" height="36" rx="6" fill="#F6B8C8"/><path fill="#FFF3D6" stroke="#E8D8B8" stroke-width="1.5" stroke-linejoin="round" d="M16 62C16 48 24 48 30 56C34 46 44 46 48 56C54 46 64 46 68 56C74 48 84 48 84 62Z"/><g fill="#E8508A"><circle cx="30" cy="72" r="2.6"/><circle cx="48" cy="78" r="2.6"/><circle cx="66" cy="72" r="2.6"/></g><rect x="30" y="32" width="6" height="20" fill="#4FC3F7"/><rect x="47" y="28" width="6" height="24" fill="#E8508A"/><rect x="64" y="32" width="6" height="20" fill="#F6C343"/><g fill="#F28C28"><path d="M33 22C37 27 37 31 33 31C29 31 29 27 33 22Z"/><path d="M50 18C54 23 54 27 50 27C46 27 46 23 50 18Z"/><path d="M67 22C71 27 71 31 67 31C63 31 63 27 67 22Z"/></g>')],
+    ['Topi tinggi', SVG('<ellipse cx="50" cy="74" rx="42" ry="9" fill="#1F1F28"/><path fill="#1F1F28" d="M28 74V26C28 20 34 16 40 16H60C66 16 72 20 72 26V74Z"/><rect x="28" y="58" width="44" height="12" fill="#F6C343"/><path d="M36 24V54" stroke="#4A4A5A" stroke-width="3" stroke-linecap="round" fill="none"/>' + sparkle(84, 18, 1.1, '#F6C343') + sparkle(14, 26, .8, '#E8508A'))],
+    ['Petasan pesta', SVG('<g transform="translate(78 92) rotate(-40)"><polygon fill="#D1495B" points="-7,0 7,0 21,-46 -21,-46"/><polygon fill="#F6C343" points="-11,-18 11,-18 14,-27 -14,-27"/><ellipse cx="0" cy="-46" rx="21" ry="5" fill="#8E1F14"/></g><g fill="none" stroke-width="3.5" stroke-linecap="round"><path d="M44 50C34 40 46 34 38 24" stroke="#4FC3F7"/><path d="M52 46C54 34 66 36 62 24" stroke="#E8508A"/></g><rect x="22" y="22" width="9" height="5" rx="1" fill="#F6C343" transform="rotate(30 26 24)"/><circle cx="30" cy="40" r="3.6" fill="#7BD88F"/><circle cx="46" cy="12" r="3.6" fill="#B07CF0"/><polygon fill="#F6C343" points="60,10 65,19 55,19"/><rect x="72" y="26" width="9" height="5" rx="1" fill="#E8508A" transform="rotate(-30 76 28)"/>')],
+    ['Bola disko', SVG('<path d="M50 0V22" stroke="#8D93AD" stroke-width="3" fill="none"/><circle cx="50" cy="58" r="36" fill="#AEB6C8"/><g fill="#E6ECF7"><rect x="32" y="40" width="9" height="9"/><rect x="59" y="49" width="9" height="9"/><rect x="41" y="67" width="9" height="9"/><rect x="50" y="31" width="9" height="9"/></g>' + discoChords + sparkle(90, 24, 1, '#F6C343') + sparkle(10, 70, .9, '#E8508A'))]
+  ].map(([n, v]) => [n, v, null]);
+  const natal2 = [
+    ['Kereta luncur', SVG('<path d="M6 80C30 92 78 92 94 70C98 64 92 60 88 66" fill="none" stroke="#D99A12" stroke-width="5" stroke-linecap="round"/><path d="M26 82L24 66M72 82L74 70" stroke="#D99A12" stroke-width="4" stroke-linecap="round" fill="none"/><path fill="#8A5A2B" d="M30 42C26 22 46 8 62 16C74 22 72 36 66 44Z"/><circle cx="62" cy="16" r="5" fill="#F6C343"/><path fill="#C0392B" d="M12 40C14 62 24 72 46 72H82C88 62 90 50 92 34C80 42 68 46 52 46C36 46 24 44 12 40Z"/><path d="M12 40C24 44 36 46 52 46C68 46 80 42 92 34" stroke="#F6C343" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="40" y="26" width="16" height="16" fill="#2E7D4F"/><rect x="46" y="26" width="4" height="16" fill="#F6C343"/>')],
+    ['Penguin natal', SVG('<ellipse cx="50" cy="62" rx="28" ry="32" fill="#1F2A44"/><ellipse cx="50" cy="68" rx="18" ry="22" fill="#F5F6FA"/><ellipse cx="22" cy="64" rx="6" ry="16" transform="rotate(14 22 64)" fill="#1F2A44"/><ellipse cx="78" cy="64" rx="6" ry="16" transform="rotate(-14 78 64)" fill="#1F2A44"/><polygon points="44,46 56,46 50,54" fill="#F28C28"/><circle cx="42" cy="40" r="3.6" fill="#fff"/><circle cx="58" cy="40" r="3.6" fill="#fff"/><circle cx="42" cy="40" r="1.6" fill="#1F2A44"/><circle cx="58" cy="40" r="1.6" fill="#1F2A44"/><path fill="#D62828" d="M28 34C32 12 52 6 68 22C58 28 40 30 28 34Z"/><rect x="26" y="32" width="48" height="8" rx="4" fill="#FFF8EC" stroke="#D9D2C3" stroke-width="1.5"/><circle cx="68" cy="18" r="6" fill="#FFF8EC" stroke="#D9D2C3" stroke-width="1.5"/><rect x="32" y="54" width="36" height="8" rx="4" fill="#D62828"/><polygon fill="#D62828" points="58,60 66,60 64,74 58,72"/><ellipse cx="40" cy="94" rx="10" ry="4" fill="#F28C28"/><ellipse cx="60" cy="94" rx="10" ry="4" fill="#F28C28"/>')],
+    ['Rumah jahe', SVG('<rect x="16" y="46" width="68" height="44" fill="#B9773B"/><rect x="66" y="22" width="10" height="20" fill="#8E5724"/><polygon points="8,50 50,18 92,50" fill="#8E5724"/><path fill="#FFF8EC" stroke="#E5DCC8" stroke-width="2" stroke-linejoin="round" d="M8 50L50 18L92 50L88 54L82 50L74 57L66 50L58 57L50 50L42 57L34 50L26 57L18 50L12 54Z"/><path fill="#5B3A29" d="M42 90V70C42 62 58 62 58 70V90Z"/><g fill="#FFE08A"><rect x="22" y="58" width="14" height="14" rx="2"/><rect x="64" y="58" width="14" height="14" rx="2"/></g><g fill="#D62828"><circle cx="30" cy="40" r="3"/><circle cx="72" cy="40" r="3"/></g><g fill="#2E7D4F"><circle cx="50" cy="32" r="3"/><circle cx="40" cy="42" r="2.6"/></g>')],
+    ['Salju ornamen', SVG('<g transform="translate(50 50)" stroke="#7FB7E6" stroke-width="3.5" stroke-linecap="round" fill="none">' + Array.from({ length: 8 }, (_, i) => '<g transform="rotate(' + (i * 45) + ')"><path d="M0 0V-40M0 -30L-8 -38M0 -30L8 -38M0 -20L-6 -26M0 -20L6 -26"/><circle cx="0" cy="-43" r="3" fill="#7FB7E6" stroke="none"/></g>').join('') + '<circle r="8" fill="#F6C343" stroke="#C99A1C" stroke-width="2"/></g>')],
+    ['Jingle bells', SVG('<g transform="translate(32 46) rotate(-12) scale(.9)"><path fill="#F6C343" stroke="#C99A1C" stroke-width="2.5" stroke-linejoin="round" d="' + bellD + '"/><circle cx="0" cy="26" r="5" fill="#C99A1C"/></g><g transform="translate(68 50) rotate(14) scale(.9)"><path fill="#F6C343" stroke="#C99A1C" stroke-width="2.5" stroke-linejoin="round" d="' + bellD + '"/><circle cx="0" cy="26" r="5" fill="#C99A1C"/></g><g fill="#2E7D4F"><ellipse cx="34" cy="14" rx="12" ry="5" transform="rotate(-25 34 14)"/><ellipse cx="66" cy="14" rx="12" ry="5" transform="rotate(25 66 14)"/></g><g fill="#D62828"><ellipse cx="42" cy="12" rx="9" ry="5" transform="rotate(-20 42 12)"/><ellipse cx="58" cy="12" rx="9" ry="5" transform="rotate(20 58 12)"/><circle cx="50" cy="13" r="4.5"/></g>')],
+    ['Bintang kristal', SVG('<polygon fill="#7FB7E6" points="' + star(50, 50, 46, 24, 8) + '"/><polygon fill="#BFE3FA" points="' + star(50, 50, 30, 15, 8) + '"/><circle cx="50" cy="50" r="6" fill="#3E8FD6"/>')],
+    ['Mistletoe', SVG('<g stroke="#4C7A3A" stroke-width="3" stroke-linecap="round" fill="none"><path d="M50 94C50 72 50 58 50 46M50 62L30 44M50 62L70 44"/></g><g fill="#4C9A5A"><ellipse cx="22" cy="30" rx="16" ry="7" transform="rotate(-40 22 30)"/><ellipse cx="36" cy="22" rx="16" ry="7" transform="rotate(-70 36 22)"/><ellipse cx="78" cy="30" rx="16" ry="7" transform="rotate(40 78 30)"/><ellipse cx="64" cy="22" rx="16" ry="7" transform="rotate(70 64 22)"/><ellipse cx="50" cy="26" rx="14" ry="7" transform="rotate(90 50 26)"/></g><g fill="#FFFDF5" stroke="#BFC7B5" stroke-width="2"><circle cx="50" cy="56" r="7"/><circle cx="40" cy="66" r="7"/><circle cx="60" cy="66" r="7"/></g>')],
+    ['Nutcracker', SVG('<rect x="30" y="4" width="40" height="26" rx="4" fill="#C0392B"/><rect x="28" y="26" width="44" height="8" fill="#F6C343"/><rect x="34" y="34" width="32" height="28" rx="12" fill="#F7C9A0"/><path fill="#FFF8EC" stroke="#D9D2C3" stroke-width="2" d="M36 54C40 50 46 52 50 56C54 52 60 50 64 54C62 66 56 70 50 66C44 70 38 66 36 54Z"/><g fill="#2B2B2B"><circle cx="43" cy="44" r="2.6"/><circle cx="57" cy="44" r="2.6"/></g><g fill="#F08A80"><circle cx="38" cy="50" r="3"/><circle cx="62" cy="50" r="3"/></g><path fill="#C0392B" d="M22 94V74C22 66 30 62 50 62C70 62 78 66 78 74V94Z"/><rect x="22" y="80" width="56" height="6" fill="#2B2B2B"/><g fill="#F6C343"><ellipse cx="26" cy="70" rx="7" ry="4"/><ellipse cx="74" cy="70" rx="7" ry="4"/><circle cx="50" cy="72" r="2.6"/><circle cx="50" cy="90" r="2.6"/></g>')],
+    ['Poinsettia', SVG('<g fill="#2E7D4F"><ellipse cx="22" cy="74" rx="18" ry="7" transform="rotate(-30 22 74)"/><ellipse cx="78" cy="74" rx="18" ry="7" transform="rotate(30 78 74)"/><ellipse cx="50" cy="90" rx="14" ry="6"/></g><g transform="translate(50 50)"><g fill="#D62828">' + Array.from({ length: 8 }, (_, i) => '<path transform="rotate(' + (i * 45) + ')" d="M0 0C-12 -14 -10 -34 0 -46C10 -34 12 -14 0 0Z"/>').join('') + '</g><g fill="#B01E1E">' + Array.from({ length: 8 }, (_, i) => '<path transform="rotate(' + (i * 45 + 22.5) + ') scale(.7)" d="M0 0C-12 -14 -10 -34 0 -46C10 -34 12 -14 0 0Z"/>').join('') + '</g><g fill="#F6C343"><circle r="5"/><circle cx="7" cy="-5" r="3.4"/><circle cx="-7" cy="-5" r="3.4"/><circle cx="0" cy="8" r="3.4"/></g></g>')],
+    ['Pohon salju', SVG('<rect x="43" y="82" width="14" height="12" fill="#6B4A2B"/>' + snowTier(36, 88, 40, '#2E7D4F') + snowTier(22, 66, 32, '#3C9A5F') + snowTier(8, 46, 24, '#47AD6C') + '<polygon fill="#F6C343" points="' + star(50, 6, 7, 3, 5) + '"/>')]
+  ].map(([n, v]) => [n, v, null]);
+
+  // ----- Botani Natal, Tropis, dan Musim Gugur: bentuk, kombinasi, dan palet orisinal -----
+  const f1 = v => Math.round(v * 10) / 10;
+  const LF = (x, y, len, wid, ang, fill, vein, vw) => '<g transform="translate(' + f1(x) + ' ' + f1(y) + ') rotate(' + f1(ang) + ')"><path fill="' + fill + '" d="M0 0C' + f1(wid) + ' ' + f1(-len * .22) + ' ' + f1(wid * .85) + ' ' + f1(-len * .72) + ' 0 ' + f1(-len) + 'C' + f1(-wid * .85) + ' ' + f1(-len * .72) + ' ' + f1(-wid) + ' ' + f1(-len * .22) + ' 0 0Z"/>' + (vein ? '<path d="M0 -1L0 ' + f1(-len * .88) + '" stroke="' + vein + '" stroke-width="' + (vw || 1.1) + '" fill="none" stroke-linecap="round"/>' : '') + '</g>';
+  const DOT = (x, y, r, fill) => '<circle cx="' + f1(x) + '" cy="' + f1(y) + '" r="' + r + '" fill="' + fill + '"/>';
+  const STK = (d, col, w) => '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linecap="round" stroke-linejoin="round"/>';
+  const PLY = (pts, fill, extra) => '<polygon fill="' + fill + '" points="' + pts.map(q => f1(q[0]) + ',' + f1(q[1])).join(' ') + '"' + (extra || '') + '/>';
+  const qb = (a, b, c, t) => { const u = 1 - t; return [u * u * a[0] + 2 * u * t * b[0] + t * t * c[0], u * u * a[1] + 2 * u * t * b[1] + t * t * c[1]]; };
+  const qa = (a, b, c, t) => Math.atan2(2 * (1 - t) * (b[1] - a[1]) + 2 * t * (c[1] - b[1]), 2 * (1 - t) * (b[0] - a[0]) + 2 * t * (c[0] - b[0])) * 180 / Math.PI;
+  const ELP = (cx, cy, rx, ry) => 'M' + f1(cx - rx) + ' ' + f1(cy) + 'A' + rx + ' ' + ry + ' 0 1 0 ' + f1(cx + rx) + ' ' + f1(cy) + 'A' + rx + ' ' + ry + ' 0 1 0 ' + f1(cx - rx) + ' ' + f1(cy) + 'Z';
+  const holly = (x, y, len, wid, ang, fill, vein) => { const L = [], R2 = [], n = 8; for (let i = 0; i <= n; i++){ const t = i / n, w = wid * Math.sin(Math.PI * Math.pow(t, .8)) * (i % 2 ? 1 : .5); L.push([-w, -len * t]); R2.push([w, -len * t]); } return '<g transform="translate(' + f1(x) + ' ' + f1(y) + ') rotate(' + f1(ang) + ')">' + PLY(L.concat(R2.reverse()), fill) + '<path d="M0 -1L0 ' + f1(-len * .9) + '" stroke="' + vein + '" stroke-width="1" fill="none" stroke-linecap="round"/></g>'; };
+  const pinnate = (a, b, c, n, len, wid, ang, col1, col2, stemCol, stemW, shrink) => { let o = STK('M' + a[0] + ' ' + a[1] + 'Q' + b[0] + ' ' + b[1] + ' ' + c[0] + ' ' + c[1], stemCol, stemW); for (let i = 1; i <= n; i++){ const t = .06 + .88 * i / n, p = qb(a, b, c, t), al = qa(a, b, c, t), s = 1 - (shrink || .55) * t; [-1, 1].forEach(sd => { o += LF(p[0], p[1], len * s, wid * s, al + sd * ang + 90, sd < 0 ? col1 : col2); }); } return o; };
+  const monstera = (fill, vein, sc) => {
+    const N = 480, pts = [], cx0 = 0, cy0 = -2, sl = [];
+    [[-52, .042], [-18, .042], [16, .042], [48, .042]].forEach(([a, w]) => { sl.push([a, w]); sl.push([180 - a, w]); });
+    for (let i = 0; i < N; i++){
+      const t = i / N * 2 * Math.PI;
+      const x = 16 * Math.pow(Math.sin(t), 3), y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+      const dx = x - cx0, dy = y - cy0, r = Math.hypot(dx, dy), phi = Math.atan2(dy, dx);
+      let k = 0;
+      sl.forEach(([a, w]) => { let d = phi - a * Math.PI / 180; d = Math.atan2(Math.sin(d), Math.cos(d)); k = Math.max(k, Math.exp(-(d * d) / (2 * w * w))); });
+      const rr = r * (1 - .62 * k);
+      pts.push([(cx0 + Math.cos(phi) * rr) * sc + 50, (cy0 + Math.sin(phi) * rr) * sc + 54]);
+    }
+    const d = 'M' + pts.map(q => f1(q[0]) + ' ' + f1(q[1])).join('L') + 'Z' + ELP(50 - 7, 50, 2.2, 3.4) + ELP(50 + 7, 50, 2.2, 3.4) + ELP(50 - 9, 62, 2, 3) + ELP(50 + 9, 62, 2, 3);
+    let v = STK('M50 84L50 14', vein, 1.8);
+    [-35, -1, 32].forEach(a => { [a, 180 - a].forEach(b => { const rad = b * Math.PI / 180, cx = 50, cy = 54 + cy0 * sc; v += STK('M' + cx + ' ' + cy + 'L' + f1(cx + Math.cos(rad) * 24) + ' ' + f1(cy + Math.sin(rad) * 24), vein, 1.1); }); });
+    return '<path fill="' + fill + '" fill-rule="evenodd" d="' + d + '"/>' + v + STK('M50 80Q50 92 45 98', vein, 3);
+  };
+
+  // palet orisinal: anggur, sage, tembaga, ungu plum, krem
+  const WINE = '#5E1B2B', BURG = '#8E2B3F', ROSE = '#C25A6E', SAGE = '#8FA68A', PINE = '#2F5D50', COPPER = '#C47A4A', CHAMP = '#E9D8B4', BLUSH = '#F2B8B0', PLUM = '#5B3A6B', COCOA = '#6B3F2A';
+  const botaniNatal = [
+    ['Poinsettia anggur', SVG(Array.from({ length: 8 }, (_, k) => LF(50, 52, 44, 12, k * 45 + 22.5, WINE, ROSE, 1)).join('') + Array.from({ length: 8 }, (_, k) => LF(50, 52, 38, 12.5, k * 45, BURG, ROSE, 1.2)).join('') + DOT(50, 52, 7.5, COPPER) + [[46, 49], [54, 49], [50, 46], [47, 56], [53, 56], [50, 53]].map(q => DOT(q[0], q[1], 1.6, CHAMP)).join(''))],
+    ['Poinsettia blush', SVG(Array.from({ length: 3 }, (_, k) => LF(50, 52, 46, 9, k * 120 + 60, PINE, SAGE, 1)).join('') + Array.from({ length: 6 }, (_, k) => LF(50, 52, 40, 16, k * 60 + 30, '#E69A98', '#F7D3CD', 1)).join('') + Array.from({ length: 6 }, (_, k) => LF(50, 52, 34, 14, k * 60, BLUSH, '#FBE3DE', 1)).join('') + DOT(50, 52, 6, CHAMP) + [[47, 50], [53, 50], [50, 56]].map(q => DOT(q[0], q[1], 1.7, COPPER)).join(''))],
+    ['Holly merah anggur', SVG(STK('M12 88Q38 64 84 24', COCOA, 2.6) + holly(30, 70, 30, 12, -52, PINE, SAGE) + holly(54, 46, 30, 12, 38, '#3C7A62', SAGE) + holly(70, 34, 22, 9, -20, PINE, SAGE) + [[48, 58], [55, 63], [49, 66]].map(q => DOT(q[0], q[1], 6, BURG) + DOT(q[0] - 1.8, q[1] - 2, 1.6, ROSE)).join(''))],
+    ['Ranting cemara', SVG(STK('M50 96L50 6', COCOA, 2.6) + Array.from({ length: 12 }, (_, i) => { const y = 12 + i * 6.2, L = 9 + i * 1.3; return STK('M50 ' + y + 'L' + f1(50 - L) + ' ' + f1(y + L * .55), i % 2 ? PINE : '#3E7A62', 2.6) + STK('M50 ' + y + 'L' + f1(50 + L) + ' ' + f1(y + L * .55), i % 2 ? '#3E7A62' : PINE, 2.6); }).join('') + STK('M50 6L50 0', PINE, 2.6))],
+    ['Pinus kerucut', SVG(STK('M50 6L50 18', COCOA, 3.5) + Array.from({ length: 8 }, (_, r) => { const y = 22 + r * 9.4, n = r < 4 ? r + 2 : 8 - r + 1 + (r === 4 ? 1 : 0), w = 15; let o = ''; for (let c = 0; c < n; c++){ const x = 50 + (c - (n - 1) / 2) * w; o += '<path fill="' + ((r + c) % 2 ? COCOA : '#8A5A3A') + '" stroke="' + COPPER + '" stroke-width="1.3" d="M' + f1(x - 8) + ' ' + f1(y - 2) + 'C' + f1(x - 8) + ' ' + f1(y + 9) + ' ' + f1(x + 8) + ' ' + f1(y + 9) + ' ' + f1(x + 8) + ' ' + f1(y - 2) + 'C' + f1(x + 4) + ' ' + f1(y - 6) + ' ' + f1(x - 4) + ' ' + f1(y - 6) + ' ' + f1(x - 8) + ' ' + f1(y - 2) + 'Z"/>'; } return o; }).join(''))],
+    ['Bola hias plum', SVG('<circle cx="50" cy="60" r="31" fill="' + PLUM + '"/><ellipse cx="38" cy="46" rx="7" ry="11" transform="rotate(30 38 46)" fill="#8A63A0"/><path d="M20 62C38 74 62 74 80 62" stroke="' + CHAMP + '" stroke-width="5" fill="none"/>' + [28, 38, 50, 62, 72].map((x, i) => DOT(x, 68 + (i % 2 ? 4 : 2), 2, COPPER)).join('') + '<rect x="42" y="22" width="16" height="9" rx="2" fill="' + COPPER + '"/><circle cx="50" cy="15" r="6" fill="none" stroke="' + COPPER + '" stroke-width="2.6"/>')],
+    ['Bola hias tetes', SVG('<path fill="' + PINE + '" d="M50 30C76 54 82 68 50 96C18 68 24 54 50 30Z"/><path d="M34 62L50 46L66 62L50 78Z" fill="none" stroke="' + CHAMP + '" stroke-width="2.2"/><path d="M42 62L50 54L58 62L50 70Z" fill="' + COPPER + '"/><path d="M40 40C44 36 46 33 50 30" stroke="#5E9A80" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="43" y="24" width="14" height="8" rx="2" fill="' + COPPER + '"/><circle cx="50" cy="16" r="6" fill="none" stroke="' + COPPER + '" stroke-width="2.6"/>')],
+    ['Lonceng tembaga', SVG('<path fill="' + COPPER + '" d="M50 24C62 24 68 34 68 46C68 60 76 68 84 80H16C24 68 32 60 32 46C32 34 38 24 50 24Z"/><path fill="#E3A66F" d="M42 34C38 40 38 52 36 62C34 70 28 76 24 80H34C38 70 44 56 44 42Z"/><rect x="14" y="78" width="72" height="7" rx="3.5" fill="#9C5A30"/><circle cx="50" cy="92" r="6" fill="#9C5A30"/>' + '<path fill="' + BURG + '" d="M50 24C42 6 22 8 24 20C26 30 42 28 50 24Z"/><path fill="' + BURG + '" d="M50 24C58 6 78 8 76 20C74 30 58 28 50 24Z"/><path d="M50 24L38 46M50 24L62 46" stroke="' + BURG + '" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="24" r="5.5" fill="' + WINE + '"/>')],
+    ['Pita bergelombang', SVG('<path d="M10 70C30 18 50 92 70 40S90 40 92 28" fill="none" stroke="' + WINE + '" stroke-width="13" stroke-linecap="butt"/><path d="M10 70C30 18 50 92 70 40S90 40 92 28" fill="none" stroke="' + ROSE + '" stroke-width="3" stroke-linecap="butt"/>' + PLY([[4, 64], [16, 76], [10, 84], [4, 76]], WINE) + PLY([[86, 22], [98, 30], [90, 34]], WINE))],
+    ['Salju geometris', SVG('<g transform="translate(50 50)">' + Array.from({ length: 6 }, (_, k) => '<g transform="rotate(' + (k * 60) + ')"><path d="M0 0L-4 -14L0 -32L4 -14Z" fill="#D6E8EE" stroke="#7FA3B5" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 -24L-8 -32L0 -42L8 -32Z" fill="#BFD9E6" stroke="#7FA3B5" stroke-width="1.6" stroke-linejoin="round"/><circle cx="0" cy="-46" r="3" fill="#7FA3B5"/></g>').join('') + '<circle r="7" fill="#EAF4F8" stroke="#7FA3B5" stroke-width="2"/></g>')],
+    ['Bintang kompas', SVG(Array.from({ length: 4 }, (_, k) => { const a = k * 90; return '<g transform="rotate(' + a + ' 50 50)"><polygon points="50,6 56,44 50,50" fill="#E3A66F"/><polygon points="50,6 44,44 50,50" fill="' + COPPER + '"/></g>'; }).join('') + Array.from({ length: 4 }, (_, k) => '<g transform="rotate(' + (k * 90 + 45) + ' 50 50)"><polygon points="50,26 54,44 50,50" fill="#9C5A30"/><polygon points="50,26 46,44 50,50" fill="#B3693A"/></g>').join('') + DOT(50, 50, 4, CHAMP))],
+    ['Eukaliptus', SVG(STK('M50 96C46 70 54 40 50 8', '#6F8B6B', 2.4) + [[30, 84, 52], [66, 76, 44], [34, 62, 40], [66, 52, 38], [36, 40, 34], [64, 30, 30], [42, 18, 24]].map((q, i) => '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="' + (9 - i * .5) + '" ry="' + (11 - i * .5) + '" fill="' + (i % 2 ? '#A9BDA3' : SAGE) + '" transform="rotate(' + (q[0] < 50 ? -20 : 20) + ' ' + q[0] + ' ' + q[1] + ')"/>').join('') + '<ellipse cx="50" cy="8" rx="5" ry="7" fill="#A9BDA3"/>')],
+    ['Ranting beri merah', SVG(STK('M50 96C48 70 40 50 24 36M48 74C56 56 64 44 78 34M44 58C42 44 46 28 50 16', COCOA, 2.2) + LF(46, 82, 16, 6, -50, SAGE, '#6F8B6B', .9) + LF(50, 70, 16, 6, 55, '#A9BDA3', '#6F8B6B', .9) + [[24, 36], [31, 42], [78, 34], [70, 40], [50, 16], [44, 26], [52, 30], [40, 52], [60, 52]].map(q => DOT(q[0], q[1], 5.6, '#B3263E') + DOT(q[0] - 1.5, q[1] - 1.8, 1.4, '#E58A98')).join(''))],
+    ['Bunga hellebore', SVG(Array.from({ length: 5 }, (_, k) => { const a = (k * 72 - 90) * Math.PI / 180; return '<circle cx="' + f1(50 + Math.cos(a) * 22) + '" cy="' + f1(50 + Math.sin(a) * 22) + '" r="19" fill="#FBF3E6" stroke="' + BLUSH + '" stroke-width="3"/>'; }).join('') + '<circle cx="50" cy="50" r="14" fill="#E9E4B4"/>' + Array.from({ length: 14 }, (_, k) => { const a = k * 2 * Math.PI / 14; return STK('M50 50L' + f1(50 + Math.cos(a) * 12) + ' ' + f1(50 + Math.sin(a) * 12), '#9AA53C', 1.4) + DOT(50 + Math.cos(a) * 13, 50 + Math.sin(a) * 13, 1.6, '#F2C94C'); }).join(''))],
+    ['Kayu manis', SVG([[-20, 40], [0, 50], [20, 60]].map(([a, x], i) => '<g transform="rotate(' + a + ' 50 70)"><rect x="' + (x - 7) + '" y="12" width="14" height="76" rx="7" fill="' + (i === 1 ? '#8B5A3C' : '#A06A44') + '"/><path d="M' + x + ' 18C' + (x - 4) + ' 40 ' + (x + 4) + ' 60 ' + x + ' 82" stroke="#6B3F2A" stroke-width="2" fill="none"/><ellipse cx="' + x + '" cy="14" rx="7" ry="3.4" fill="#5E3524"/></g>').join('') + '<path d="M30 56C44 62 58 62 72 56" stroke="' + BURG + '" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M50 60L44 74M50 60L58 74" stroke="' + BURG + '" stroke-width="3" stroke-linecap="round" fill="none"/>')],
+    ['Bunga lawang', SVG(Array.from({ length: 8 }, (_, k) => LF(50, 50, 38, 10, k * 45, COCOA, '#3E2415', 1) + '<g transform="rotate(' + (k * 45) + ' 50 50)">' + DOT(50, 24, 3.2, '#E3B27A') + '</g>').join('') + DOT(50, 50, 9, '#3E2415') + DOT(50, 50, 4, '#E3B27A'))],
+    ['Jeruk kering', SVG('<circle cx="50" cy="50" r="38" fill="#E8A25B" stroke="#C77D3A" stroke-width="3"/><circle cx="50" cy="50" r="32" fill="#F2C98A"/>' + Array.from({ length: 8 }, (_, k) => { const a = k * Math.PI / 4; return '<path d="M50 50L' + f1(50 + Math.cos(a) * 29) + ' ' + f1(50 + Math.sin(a) * 29) + '" stroke="#C77D3A" stroke-width="2.2" stroke-linecap="round"/>' + DOT(50 + Math.cos(a + .39) * 17, 50 + Math.sin(a + .39) * 17, 2.2, '#FBE3B8'); }).join('') + '<circle cx="50" cy="50" r="4" fill="#C77D3A"/>')],
+    ['Label hadiah', SVG('<path fill="#F0E0C0" stroke="#C9A66B" stroke-width="2" fill-rule="evenodd" d="M30 12H70L84 28V90H16V28ZM50 20A5 5 0 1 0 50.01 20Z"/><path d="M50 14C40 4 24 4 24 14C24 24 40 20 50 14C60 6 76 6 76 16" stroke="' + BURG + '" stroke-width="2.6" fill="none" stroke-linecap="round"/>' + holly(40, 70, 22, 9, -28, PINE, SAGE) + holly(58, 70, 22, 9, 28, '#3C7A62', SAGE) + DOT(50, 66, 4.6, '#B3263E') + DOT(45, 70, 4.6, BURG) + '<path d="M26 40H74" stroke="#C9A66B" stroke-width="2"/>')]
+  ].map(([n, v]) => [n, v, null]);
+
+  // palet tropis orisinal: teal, hijau limau, mangga, magenta, karang
+  const TEAL = '#0E8A8A', LIME = '#A7C957', MANGO = '#F4A261', MAGENTA = '#D6336C', FOREST = '#2B6E4F', SUNNY = '#F6C343', CORAL = '#F07167', SKY = '#4A9CC8';
+  const tropis = [
+    ['Monstera', SVG(monstera('#1F7A5A', '#0F4D3A', 2.7))],
+    ['Kipas palem', SVG(STK('M50 96L50 62', '#3C7A52', 3.4) + Array.from({ length: 13 }, (_, i) => LF(50, 74, 56, 5.4, -66 + i * 11, i % 2 ? FOREST : '#3E9060', null)).join('') + DOT(50, 74, 4, '#3C7A52'))],
+    ['Daun pisang', SVG('<g transform="translate(5 6) scale(.9) rotate(30 50 52)"><path fill="#4FA05A" d="M50 96C26 82 22 52 28 22C34 12 44 8 50 4C56 8 66 12 72 22C78 52 74 82 50 96Z"/><path d="M50 96L50 8" stroke="#2F6F3E" stroke-width="2.4" stroke-linecap="round"/>' + Array.from({ length: 11 }, (_, i) => { const y = 20 + i * 7; return STK('M50 ' + y + 'L' + f1(50 - (14 + (i < 3 ? i * 2 : 6))) + ' ' + f1(y - 7), '#8CCB8B', 1.4) + STK('M50 ' + y + 'L' + f1(50 + (14 + (i < 3 ? i * 2 : 6))) + ' ' + f1(y - 7), '#8CCB8B', 1.4); }).join('') + '</g>')],
+    ['Kembang sepatu tropis', SVG(Array.from({ length: 5 }, (_, k) => '<g transform="rotate(' + (k * 72) + ' 50 50)"><path d="M50 50C32 40 28 12 50 8C72 12 68 40 50 50Z" fill="' + MAGENTA + '"/><path d="M50 50C45 36 46 22 50 14" stroke="#9E1F4E" stroke-width="1.6" fill="none"/></g>').join('') + '<circle cx="50" cy="50" r="8" fill="#8E1F44"/><path d="M50 50L66 24" stroke="#F6C343" stroke-width="2.6" stroke-linecap="round"/>' + [[66, 24], [62, 28], [69, 29], [60, 22]].map(q => DOT(q[0], q[1], 2.2, '#F6C343')).join(''))],
+    ['Burung surga', SVG('<path d="M50 96C50 70 50 56 50 44" stroke="' + FOREST + '" stroke-width="3.4" fill="none" stroke-linecap="round"/>' + LF(50, 50, 40, 6, -40, '#F4A261', '#D9803A', 1) + LF(50, 50, 44, 6, -10, CORAL, '#C94F45', 1) + LF(50, 50, 42, 6, 22, '#F4A261', '#D9803A', 1) + LF(50, 50, 36, 6, 52, SKY, '#2F6E96', 1) + '<path fill="' + FOREST + '" d="M24 58C30 48 48 48 74 56C58 66 36 66 24 58Z"/><path d="M30 58C46 56 58 58 70 57" stroke="#7BCB8B" stroke-width="1.6" fill="none"/>')],
+    ['Jahe merah', SVG('<path d="M50 96L50 70" stroke="' + FOREST + '" stroke-width="3.6" stroke-linecap="round"/>' + [[50, 66, 21, 18, 0, '#D94F4F'], [50, 56, 19, 16, 0, CORAL], [50, 46, 17, 15, 0, '#F58E7E'], [50, 37, 14, 13, 0, CORAL], [50, 29, 11, 11, 0, '#F58E7E'], [50, 22, 8, 9, 0, '#D94F4F']].map(q => LF(q[0], q[1] + 14, q[2] * 1.5, q[3] * .9, 0, q[5], null)).join('') + LF(34, 78, 30, 7, -52, '#3E9060', FOREST, 1) + LF(66, 78, 30, 7, 52, '#3E9060', FOREST, 1) + DOT(50, 14, 3.4, SUNNY))],
+    ['Pepaya belah', SVG('<ellipse cx="50" cy="52" rx="30" ry="42" fill="#EE9442"/><ellipse cx="50" cy="52" rx="25" ry="37" fill="#F9C27C"/><ellipse cx="50" cy="54" rx="13" ry="22" fill="#F29B4A"/>' + [[46, 42], [54, 44], [44, 54], [52, 56], [48, 66], [56, 64], [50, 34]].map(q => '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="2.3" ry="3.2" fill="#2B2B2B"/>').join('') + '<path d="M44 12C46 6 54 6 56 12" stroke="#6F8B3A" stroke-width="3.4" fill="none" stroke-linecap="round"/>')],
+    ['Kelapa belah', SVG('<circle cx="50" cy="52" r="40" fill="#5B3A29"/><circle cx="50" cy="52" r="34" fill="#FBF3E6"/><circle cx="50" cy="52" r="22" fill="#E8DCC4"/><circle cx="50" cy="52" r="13" fill="#CDE9F2"/><circle cx="45" cy="47" r="3.4" fill="#EAF6FA"/>' + Array.from({ length: 14 }, (_, k) => { const a = k * 2 * Math.PI / 14; return STK('M' + f1(50 + Math.cos(a) * 41) + ' ' + f1(52 + Math.sin(a) * 41) + 'L' + f1(50 + Math.cos(a) * 46) + ' ' + f1(52 + Math.sin(a) * 46), '#8B5A3C', 2); }).join(''))],
+    ['Kamboja', SVG(Array.from({ length: 5 }, (_, k) => '<g transform="rotate(' + (k * 72) + ' 50 50)"><path d="M50 50C34 40 34 14 54 8C66 14 66 36 50 50Z" fill="#FFF8EE" stroke="#F1DEC0" stroke-width="1.4"/><path d="M50 50C46 38 48 24 52 14" stroke="' + SUNNY + '" stroke-width="3.2" fill="none" stroke-linecap="round"/></g>').join('') + DOT(50, 50, 6, SUNNY) + DOT(50, 50, 2.6, '#F29B2E'))],
+    ['Pelepah sirip', SVG(pinnate([10, 92], [32, 20], [92, 20], 12, 28, 4.6, 62, '#2E8B5A', '#3E9F6B', '#2F6F3E', 2.8, .5))],
+    ['Paku tropis', SVG(pinnate([50, 98], [26, 56], [58, 12], 14, 22, 5, 76, '#5E9F4C', '#79B85F', '#3E7A34', 2.4, .62) + '<path d="M58 12C62 6 70 8 68 15C66 20 60 18 61 14" stroke="#3E7A34" stroke-width="2.4" fill="none" stroke-linecap="round"/>')],
+    ['Daun bambu', SVG(STK('M20 96L50 60', '#7A8B3A', 3) + LF(50, 60, 52, 8, -12, '#79B85F', '#4C8A3A', 1) + LF(50, 60, 54, 8, 22, '#5E9F4C', '#3E7A34', 1) + LF(50, 60, 48, 8, 54, '#A7C957', '#6F9A2E', 1) + LF(50, 60, 46, 8, -44, '#8DC25C', '#4C8A3A', 1) + DOT(50, 60, 3.4, '#7A8B3A'))],
+    ['Anggrek bulan', SVG('<path d="M50 96C50 76 50 66 50 56" stroke="' + FOREST + '" stroke-width="3" stroke-linecap="round" fill="none"/><ellipse cx="50" cy="26" rx="13" ry="22" fill="#FDF2F8" stroke="#F4C6DA" stroke-width="1.4"/><ellipse cx="26" cy="46" rx="24" ry="18" fill="#FDF2F8" stroke="#F4C6DA" stroke-width="1.4" transform="rotate(-18 26 46)"/><ellipse cx="74" cy="46" rx="24" ry="18" fill="#FDF2F8" stroke="#F4C6DA" stroke-width="1.4" transform="rotate(18 74 46)"/><ellipse cx="38" cy="64" rx="11" ry="15" fill="#F9DCEB" transform="rotate(32 38 64)"/><ellipse cx="62" cy="64" rx="11" ry="15" fill="#F9DCEB" transform="rotate(-32 62 64)"/><path fill="' + MAGENTA + '" d="M50 40C40 42 38 56 50 62C62 56 60 42 50 40Z"/><circle cx="50" cy="46" r="4" fill="' + SUNNY + '"/>')],
+    ['Belimbing', SVG('<polygon points="' + Array.from({ length: 10 }, (_, i) => { const r = i % 2 ? 22 : 40, a = -Math.PI / 2 + i * Math.PI / 5; return f1(50 + Math.cos(a) * r) + ',' + f1(52 + Math.sin(a) * r); }).join(' ') + '" fill="#D8E86B" stroke="#D8E86B" stroke-width="9" stroke-linejoin="round"/><polygon points="' + Array.from({ length: 10 }, (_, i) => { const r = i % 2 ? 14 : 28, a = -Math.PI / 2 + i * Math.PI / 5; return f1(50 + Math.cos(a) * r) + ',' + f1(52 + Math.sin(a) * r); }).join(' ') + '" fill="#F0F6A8" stroke="#F0F6A8" stroke-width="4" stroke-linejoin="round"/>' + Array.from({ length: 5 }, (_, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / 5; return '<ellipse cx="' + f1(50 + Math.cos(a) * 13) + '" cy="' + f1(52 + Math.sin(a) * 13) + '" rx="1.8" ry="3" fill="#8A7A2A" transform="rotate(' + (i * 72) + ' ' + f1(50 + Math.cos(a) * 13) + ' ' + f1(52 + Math.sin(a) * 13) + ')"/>'; }).join(''))],
+    ['Buah naga', SVG('<g transform="translate(5 5) scale(.9)"><ellipse cx="50" cy="52" rx="34" ry="40" fill="#E0457B"/>' + Array.from({ length: 8 }, (_, k) => { const a = (k * 45 + 22) * Math.PI / 180; return LF(50 + Math.cos(a) * 34, 52 + Math.sin(a) * 40, 16, 5, k * 45 + 22 + 90 - 0, '#7CC96A', null); }).join('') + '<ellipse cx="50" cy="52" rx="28" ry="34" fill="#FBE3EE"/>' + Array.from({ length: 22 }, (_, i) => { const a = i * 2.4, r = 6 + (i % 7) * 3.4; return DOT(50 + Math.cos(a) * r, 52 + Math.sin(a) * r * 1.15, 1.4, '#2B2B2B'); }).join('') + '</g>')],
+    ['Mangga', SVG('<path fill="' + MANGO + '" d="M44 16C74 12 88 40 80 66C74 86 50 96 32 84C14 72 18 44 28 30C32 22 38 18 44 16Z"/><path fill="' + CORAL + '" d="M62 20C82 28 86 50 78 68C74 78 66 86 58 90C70 70 72 44 62 20Z"/><path d="M44 16C44 10 46 6 50 4" stroke="#6F8B3A" stroke-width="3.2" fill="none" stroke-linecap="round"/>' + LF(48, 14, 26, 8, 62, '#4FA05A', '#2F6F3E', 1))],
+    ['Pandan', SVG(Array.from({ length: 5 }, (_, k) => LF(50, 96, 86, 8 - Math.abs(k - 2), -34 + k * 17, k % 2 ? '#3E9060' : '#2B7A50', '#1F5A3A', 1.3)).join(''))],
+    ['Daun talas', SVG('<path fill="#1F7A5A" d="M50 14C20 12 6 40 14 64C20 82 38 90 50 90C62 90 80 82 86 64C94 40 80 12 50 14Z"/><path d="M50 14L50 42" stroke="#0F4D3A" stroke-width="2" fill="none"/><path fill="#165E45" d="M50 14C34 14 22 24 18 36C34 30 44 24 50 14Z"/>' + Array.from({ length: 9 }, (_, k) => { const a = (-160 + k * 40) * Math.PI / 180; return STK('M50 56L' + f1(50 + Math.cos(a) * 34) + ' ' + f1(56 + Math.sin(a) * 34), '#5FBF98', 1.6); }).join('') + DOT(50, 56, 4, '#5FBF98') + STK('M50 56L50 98', '#165E45', 3.4))]
+  ].map(([n, v]) => [n, v, null]);
+
+  // palet musim gugur orisinal: karat, oker, plum, zaitun, kakao
+  const RUST = '#B5532B', OCHRE = '#D9A441', PLUM2 = '#6A3D5B', OLIVE = '#7A8B3A', SAND = '#E8D4A8', HIP = '#C0392B';
+  const gugur = [
+    ['Daun maple', SVG(PLY([[50, 6], [56, 22], [66, 16], [64, 34], [82, 30], [76, 44], [92, 52], [72, 60], [76, 74], [58, 68], [52, 92], [48, 92], [42, 68], [24, 74], [28, 60], [8, 52], [24, 44], [18, 30], [36, 34], [34, 16], [44, 22]], RUST, ' stroke="' + RUST + '" stroke-width="2" stroke-linejoin="round"') + STK('M50 86L50 20M50 62L24 44M50 62L76 44M50 70L30 62M50 70L70 62', '#8E3A1A', 1.5) + STK('M50 84L50 98', '#8E3A1A', 3))],
+    ['Daun oak', SVG((() => { const L = [], R2 = []; for (let i = 0; i <= 28; i++){ const t = i / 28, w = 24 * Math.pow(Math.sin(Math.PI * Math.pow(t, .85)), .8) * (1 + .46 * Math.cos(t * 6 * Math.PI)); L.push([50 - w, 90 - t * 80]); R2.push([50 + w, 90 - t * 80]); } return PLY(L.concat(R2.reverse()), OCHRE, ' stroke="' + OCHRE + '" stroke-width="3" stroke-linejoin="round"'); })() + STK('M50 88L50 18', '#A3742A', 1.8) + STK('M50 92L50 99', '#A3742A', 3))],
+    ['Daun birch', SVG((() => { const L = [], R2 = []; for (let i = 0; i <= 20; i++){ const t = i / 20, w = 32 * Math.pow(Math.sin(Math.PI * Math.pow(t, .75)), .9) * (i % 2 ? 1 : .86); L.push([50 - w, 86 - t * 78]); R2.push([50 + w, 86 - t * 78]); } return PLY(L.concat(R2.reverse()), '#E8B93C'); })() + STK('M50 86L50 14M50 66L32 52M50 66L68 52M50 48L36 36M50 48L64 36', '#B5832A', 1.4) + STK('M50 86L50 98', '#B5832A', 2.6))],
+    ['Daun ginkgo', SVG('<path fill="#E3C13B" d="M50 90L44 62C20 56 8 38 14 16C28 24 38 20 50 30C62 20 72 24 86 16C92 38 80 56 56 62Z"/>' + Array.from({ length: 9 }, (_, k) => { const a = (-150 + k * 15) * Math.PI / 180; return STK('M50 62L' + f1(50 + Math.cos(a) * 44) + ' ' + f1(62 + Math.sin(a) * 46), '#B89A20', 1.1); }).join('') + STK('M50 62L50 98', '#B89A20', 3))],
+    ['Daun majemuk', SVG(STK('M50 96L50 8', '#8A6A2A', 2.4) + [[82, 56], [66, 54], [50, 52], [34, 50], [20, 48]].map((q, i) => LF(50, q[0], 30 - i * 2, 10 - i * .6, -58, i % 2 ? '#C2762E' : OCHRE, '#8A5A1A', 1) + LF(50, q[0], 30 - i * 2, 10 - i * .6, 58, i % 2 ? OCHRE : '#C2762E', '#8A5A1A', 1)).join('') + LF(50, 20, 24, 6.5, 0, RUST, '#8A3A1A', 1))],
+    ['Biji ek', SVG('<ellipse cx="50" cy="66" rx="19" ry="26" fill="#C47A3A"/><ellipse cx="42" cy="62" rx="5" ry="14" transform="rotate(8 42 62)" fill="#E0A064"/><path d="M50 90L50 94" stroke="#6B3F2A" stroke-width="3" stroke-linecap="round"/><path fill="' + COCOA + '" d="M26 46C26 26 74 26 74 46C74 52 26 52 26 46Z"/>' + Array.from({ length: 4 }, (_, r) => Array.from({ length: 5 }, (_, c) => '<path d="M' + (30 + c * 9 + (r % 2 ? 4 : 0)) + ' ' + (33 + r * 5) + 'l4 2.5l-4 2.5l-4 -2.5z" fill="#8A5A3A"/>').join('')).join('') + STK('M50 28L50 18', COCOA, 3.4))],
+    ['Kastanye', SVG(Array.from({ length: 28 }, (_, k) => { const a = k * 2 * Math.PI / 28; return STK('M' + f1(40 + Math.cos(a) * 20) + ' ' + f1(44 + Math.sin(a) * 20) + 'L' + f1(40 + Math.cos(a) * 34) + ' ' + f1(44 + Math.sin(a) * 34), '#8A8A3A', 2.4); }).join('') + DOT(40, 44, 24, '#6E7A2E') + '<ellipse cx="68" cy="68" rx="19" ry="23" fill="#7A3A24" transform="rotate(-18 68 68)"/><ellipse cx="62" cy="60" rx="5.5" ry="11" fill="#B0603A" transform="rotate(-18 62 60)"/><path d="M58 86C62 90 74 90 78 82C70 82 62 82 58 86Z" fill="#E8D4A8"/>')],
+    ['Jamur hutan', SVG('<path fill="' + SAND + '" d="M38 62C38 74 34 84 28 92H72C66 84 62 74 62 62Z"/><path d="M38 62C42 66 58 66 62 62" stroke="#C9B084" stroke-width="2" fill="none"/><path fill="' + RUST + '" d="M10 58C10 30 28 14 50 14C72 14 90 30 90 58C90 64 10 64 10 58Z"/>' + [[30, 38, 5], [52, 28, 6.5], [70, 42, 5], [44, 50, 4], [64, 56, 3.4], [22, 54, 3.2]].map(q => DOT(q[0], q[1], q[2], '#F6E9CF')).join('') + '<path d="M12 62C30 68 70 68 88 62" stroke="#8E3A1A" stroke-width="2.4" fill="none"/>')],
+    ['Labu gugur', SVG('<path d="M50 28C52 16 62 12 70 16" stroke="' + OLIVE + '" stroke-width="3.4" fill="none" stroke-linecap="round"/>' + LF(68, 16, 22, 8, 70, OLIVE, '#4F5A1C', 1) + [[22, 0], [34, 1], [66, 1], [78, 0]].map(q => '<ellipse cx="' + q[0] + '" cy="62" rx="' + (q[1] ? 18 : 15) + '" ry="30" fill="' + (q[1] ? '#E58A32' : '#C96A22') + '"/>').join('') + '<ellipse cx="50" cy="62" rx="16" ry="32" fill="#F1A24A"/><rect x="45" y="22" width="10" height="12" rx="4" fill="#6B7A2A"/>' + STK('M50 32C48 48 48 74 50 92', '#C96A22', 1.6))],
+    ['Bunga matahari', SVG(Array.from({ length: 16 }, (_, k) => LF(50, 50, 44, 8, k * 22.5, '#E8A317', null)).join('') + Array.from({ length: 16 }, (_, k) => LF(50, 50, 38, 8.5, k * 22.5 + 11.25, SUNNY, '#E8A317', 1)).join('') + DOT(50, 50, 16, COCOA) + Array.from({ length: 24 }, (_, i) => { const a = i * 2.4, r = 3 + (i % 6) * 2.1; return DOT(50 + Math.cos(a) * r, 50 + Math.sin(a) * r, 1.3, '#9C6A3A'); }).join(''))],
+    ['Gandum', SVG(STK('M50 98L50 28', OCHRE, 2.4) + Array.from({ length: 7 }, (_, i) => { const y = 14 + i * 9; return '<ellipse cx="42" cy="' + y + '" rx="4.2" ry="8" transform="rotate(-24 42 ' + y + ')" fill="' + (i % 2 ? '#E3B552' : OCHRE) + '"/><ellipse cx="58" cy="' + y + '" rx="4.2" ry="8" transform="rotate(24 58 ' + y + ')" fill="' + (i % 2 ? OCHRE : '#E3B552') + '"/>' + STK('M40 ' + (y - 6) + 'L34 ' + (y - 18), '#B5832A', 1) + STK('M60 ' + (y - 6) + 'L66 ' + (y - 18), '#B5832A', 1); }).join('') + '<ellipse cx="50" cy="10" rx="4" ry="8" fill="' + OCHRE + '"/>' + LF(50, 90, 30, 5, 40, OLIVE, null) + LF(50, 90, 30, 5, -40, '#8EA03E', null))],
+    ['Biji maple', SVG('<g transform="rotate(-22 50 60)"><path fill="#D9B070" stroke="#B5832A" stroke-width="1.6" d="M50 66C34 56 24 36 28 14C46 18 56 40 50 66Z"/><ellipse cx="50" cy="72" rx="7.5" ry="10" fill="#8A5A3A"/></g><g transform="rotate(22 50 60) translate(0 0)"><path fill="#E3C28A" stroke="#B5832A" stroke-width="1.6" d="M50 66C66 56 76 36 72 14C54 18 44 40 50 66Z"/><ellipse cx="50" cy="72" rx="7.5" ry="10" fill="#9C6A3A"/></g>')],
+    ['Buah ros liar', SVG(STK('M20 92C30 70 36 52 50 34C62 20 76 14 86 14', COCOA, 2.4) + LF(34, 64, 20, 7, -60, OLIVE, '#4F5A1C', 1) + LF(46, 50, 20, 7, 52, '#8EA03E', '#4F5A1C', 1) + [[52, 36, -20], [70, 26, 10], [40, 52, -40]].map(q => '<g transform="rotate(' + q[2] + ' ' + q[0] + ' ' + q[1] + ')"><ellipse cx="' + q[0] + '" cy="' + (q[1] + 6) + '" rx="7" ry="11" fill="' + HIP + '"/><ellipse cx="' + (q[0] - 2) + '" cy="' + (q[1] + 2) + '" rx="2" ry="4.4" fill="#E87A6E"/><path d="M' + (q[0] - 3) + ' ' + (q[1] - 5) + 'l3 -4l3 4z" fill="#6B3A24"/></g>').join(''))],
+    ['Daun elm', SVG((() => { const L = [], R2 = []; for (let i = 0; i <= 22; i++){ const t = i / 22, w = 28 * Math.sin(Math.PI * Math.pow(t, .8)) * (i % 2 ? 1 : .9); L.push([50 - w * .85, 88 - t * 78]); R2.push([50 + w * 1.1, 88 - t * 78]); } return PLY(L.concat(R2.reverse()), '#C65D2E'); })() + STK('M50 88L50 12M50 68L34 54M50 68L68 52M50 46L38 34M50 46L64 32', '#8E3A1A', 1.4) + STK('M50 88L54 98', '#8E3A1A', 3))],
+    ['Paku coklat', SVG(pinnate([50, 98], [36, 54], [56, 10], 16, 20, 4.6, 70, '#B5532B', '#C2762E', '#6B3F2A', 2.3, .6))],
+    ['Pir', SVG('<path fill="#C9C65A" d="M50 18C58 18 62 26 62 34C62 42 74 52 76 66C78 82 66 94 50 94C34 94 22 82 24 66C26 52 38 42 38 34C38 26 42 18 50 18Z"/><path fill="#E8A87C" d="M62 40C72 52 80 66 74 82C70 90 62 94 56 94C70 80 70 56 62 40Z"/><ellipse cx="38" cy="62" rx="4" ry="10" transform="rotate(14 38 62)" fill="#E3E28A"/><path d="M50 18C50 10 52 6 56 4" stroke="#6B3F2A" stroke-width="3" fill="none" stroke-linecap="round"/>' + LF(53, 14, 22, 7, 64, OLIVE, '#4F5A1C', 1))],
+    ['Kenari', SVG('<ellipse cx="50" cy="52" rx="34" ry="38" fill="#B8865B"/><path d="M50 14C46 34 46 70 50 90" stroke="#7A5232" stroke-width="3" fill="none"/>' + [[34, 28], [30, 44], [32, 60], [38, 74], [66, 28], [70, 44], [68, 60], [62, 74]].map((q, i) => STK('M' + q[0] + ' ' + q[1] + 'q' + (q[0] < 50 ? -6 : 6) + ' 6 0 12', '#8A6038', 1.8)).join('') + '<ellipse cx="38" cy="38" rx="6" ry="12" transform="rotate(20 38 38)" fill="#D2A57A"/>' + STK('M50 14L50 8', '#7A5232', 3))],
+    ['Ranting daun gugur', SVG(STK('M10 80C30 70 50 60 70 40C78 32 86 24 92 14', COCOA, 2.8) + [[24, 74, 8, RUST], [38, 66, 7, OCHRE], [52, 58, 8, PLUM2], [62, 46, 7, '#C2762E'], [74, 34, 6.5, RUST], [30, 62, 6, '#8EA03E'], [46, 72, 6, '#C2762E'], [60, 62, 6.5, OCHRE], [72, 48, 5.5, PLUM2], [84, 24, 5, OCHRE]].map(q => '<ellipse cx="' + q[0] + '" cy="' + q[1] + '" rx="' + q[2] + '" ry="' + (q[2] * 1.5) + '" transform="rotate(' + (q[0] * 2 % 70 - 20) + ' ' + q[0] + ' ' + q[1] + ')" fill="' + q[3] + '"/>').join(''))]
+  ].map(([n, v]) => [n, v, null]);
+
   return {
     'Batik': [
       ['Kawung', SVG('<g transform="translate(50 50)"><g fill="#5B3A29"><ellipse cx="0" cy="-24" rx="13" ry="23"/><ellipse cx="0" cy="24" rx="13" ry="23"/><ellipse cx="-24" cy="0" rx="23" ry="13"/><ellipse cx="24" cy="0" rx="23" ry="13"/></g><g fill="#E8CFA0"><ellipse cx="0" cy="-24" rx="6" ry="14"/><ellipse cx="0" cy="24" rx="6" ry="14"/><ellipse cx="-24" cy="0" rx="14" ry="6"/><ellipse cx="24" cy="0" rx="14" ry="6"/></g><circle r="8" fill="#5B3A29"/><circle r="3.5" fill="#E8CFA0"/></g>')],
@@ -896,7 +1569,12 @@ function buildSamples(){
     ],
     'Hewan': hewan,
     'Makanan': makanan,
-    'Natal': natal,
+    'Natal': natal.concat(natal2),
+    'Halloween': halloween,
+    'Tahun Baru': tahunbaru,
+    'Botani Natal': botaniNatal,
+    'Tropis': tropis,
+    'Musim Gugur': gugur,
     'Alam': [
       ['Bunga', SVG('<g transform="translate(128 128)"><g fill="#E5573F">' + petals(6, -62, 30, 52) + '</g><circle r="26" fill="#F6C343"/></g>', '0 0 256 256')],
       ['Daun', SVG('<g transform="translate(128 128) rotate(-34)"><path fill="#0E6573" d="M0,-110C80,-50 80,60 0,110C-80,60 -80,-50 0,-110Z"/><path d="M0,-92V100" stroke="#D9DFD3" stroke-width="5" fill="none"/></g>', '0 0 256 256')],
@@ -907,11 +1585,12 @@ function buildSamples(){
 }
 const SAMPLES = buildSamples();
 
+const CAT_ICON = { 'Batik': '🌺', 'Garis': '〰️', 'Pakaian': '👕', 'Barang': '☕', 'Hewan': '🦌', 'Makanan': '🍕', 'Natal': '🎄', 'Halloween': '🎃', 'Tahun Baru': '🎆', 'Botani Natal': '❄️', 'Tropis': '🌴', 'Musim Gugur': '🍂', 'Alam': '🌿' };
 function initSamples(){
   const chips = $('chips'), grid = $('sampleGrid');
   chips.innerHTML = ''; grid.innerHTML = '';
   Object.keys(SAMPLES).forEach(c => {
-    const b = document.createElement('button'); b.type = 'button'; b.textContent = c;
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = (CAT_ICON[c] ? CAT_ICON[c] + ' ' : '') + c;
     b.setAttribute('aria-pressed', c === state.cat ? 'true' : 'false');
     b.onclick = () => { state.cat = c; initSamples(); };
     chips.appendChild(b);
@@ -1167,6 +1846,7 @@ function render(ctx, W, H, items, hq){
     const m = it.m;
     const dw = m.w * it.sc * k, dh = m.h * it.sc * k;
     const x = it.x * W, y = it.y * H, r = Math.hypot(dw, dh) / 2;
+    if (it.clip){ ctx.save(); ctx.beginPath(); ctx.rect(it.clip.x * W, it.clip.y * H, it.clip.w * W, it.clip.h * H); ctx.clip(); }
     for (const [ox, oy] of offs(it, x, y, r, W, H)){
       ctx.save();
       ctx.translate(x + ox, y + oy); ctx.rotate(it.rot); if (it.flip) ctx.scale(-1, 1);
@@ -1174,6 +1854,7 @@ function render(ctx, W, H, items, hq){
       else ctx.drawImage(m.canvas, -dw / 2, -dh / 2, dw, dh);
       ctx.restore();
     }
+    if (it.clip) ctx.restore();
   }
   ctx.restore();
 }
@@ -1187,9 +1868,39 @@ function drawSeams(ctx, W, H, N, lw, dash){
 }
 
 // Unduh hasil Cek sambungan: ubin diulang N x N, ukuran total mengikuti pilihan Ukuran
+async function downloadTilesVector(N, mp, fmt){
+  const btn = $('tileDl'); btn.disabled = true; btn.textContent = 'Membuat…';
+  await new Promise(r => setTimeout(r, 40));
+  try {
+    if (usedMotifs().some(m => !m.svg)){
+      toast('SVG dan EPS butuh motif berformat SVG. Hapus gambar PNG atau JPG dari susunan, atau pilih format JPG atau PNG.', 4800);
+      return;
+    }
+    const [W0, H0] = outDims(mp), W = Math.floor(W0 / N) * N, H = Math.floor(H0 / N) * N;
+    const nm = 'sambungan-' + state.seed + '-' + N + 'x' + N + '-' + W + 'x' + H;
+    if (fmt === 'svg'){
+      const text = buildSVG(W, H, { tileN: N });
+      saveBlob(new Blob([text], { type: 'image/svg+xml' }), nm + '.svg', true);
+      toast('SVG sambungan ' + N + '×' + N + ' dibuat, ' + (text.length / 1048576).toFixed(1).replace('.', ',') + ' MB.', 3600);
+    } else {
+      const r = buildEPS(W, H, { tileN: N }), w = r.warn, bits = [];
+      saveBlob(new Blob([r.text], { type: 'application/postscript' }), nm + '.eps', false);
+      if (w.grad) bits.push('gradasi jadi satu warna');
+      if (w.transp) bits.push('transparansi dicampur ke warna latar');
+      if (w.clip) bits.push('clip/mask diabaikan');
+      toast('EPS sambungan ' + N + '×' + N + ' dibuat, ' + (r.text.length / 1048576).toFixed(1).replace('.', ',') + ' MB.' + (bits.length ? ' Catatan: ' + bits.join(', ') + '.' : ''), bits.length ? 6000 : 3600);
+    }
+  } catch (e){
+    toast('Gagal membuat file: ' + (e && e.message ? e.message : 'kesalahan tak dikenal'), 4500);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Unduh';
+  }
+}
+
 async function downloadTiles(){
   if (!state.items.length){ toast('Susun dulu motifnya.'); return; }
   const N = +$('tileN').value, mp = +$('outsize').value;
+  if ($('fmt').value === 'svg' || $('fmt').value === 'eps') return downloadTilesVector(N, mp, $('fmt').value);
   const png = $('fmt').value === 'png' || $('transparent').checked;
   const btn = $('tileDl'); btn.disabled = true; btn.textContent = 'Membuat…';
   await new Promise(r => setTimeout(r, 40));
@@ -1198,7 +1909,7 @@ async function downloadTiles(){
     try {
       const [W0, H0] = outDims(m), w = Math.floor(W0 / N), h = Math.floor(H0 / N), W = w * N, H = h * N;
       const t = document.createElement('canvas'); t.width = w; t.height = h;
-      render(t.getContext('2d'), w, h, state.items, true);
+      renderArt(t.getContext('2d'), w, h, true);
       const c = document.createElement('canvas'); c.width = W; c.height = H;
       const x = c.getContext('2d');
       for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) x.drawImage(t, i * w, j * h);
@@ -1216,11 +1927,30 @@ async function downloadTiles(){
   btn.disabled = false; btn.textContent = 'Unduh';
 }
 
+let EM = 0;   // lebar margin editor (piksel kanvas), hanya saat menyusun di mode Satu gambar
+const wantMargin = () => state.kind === 'one' && canEdit();
+function applyViewSize(){
+  const M = wantMargin() ? Math.round(0.14 * Math.max(PW, PH)) : 0;
+  EM = M; view.width = PW + 2 * M; view.height = PH + 2 * M;
+  $('frame').style.aspectRatio = view.width + ' / ' + view.height;
+  $('frame').style.width = 'min(100%, calc(var(--fh) * ' + (view.width / view.height).toFixed(4) + '))';
+}
 function show(){
-  vctx.clearRect(0, 0, PW, PH);
+  const wantM = wantMargin() ? Math.round(0.14 * Math.max(PW, PH)) : 0;
+  if (wantM !== EM) applyViewSize();
+  vctx.setTransform(1, 0, 0, 1, 0, 0); vctx.clearRect(0, 0, view.width, view.height);
   if (state.mode === 'preview'){
-    vctx.drawImage(prevC, 0, 0);
-    if (canEdit()) drawOverlay();
+    if (EM){
+      vctx.fillStyle = '#171928'; vctx.fillRect(0, 0, view.width, view.height);
+      if (state.oneWrap !== false) for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) if (i || j) vctx.drawImage(prevC, EM + i * PW, EM + j * PH);   // salinan hantu di margin
+      vctx.fillStyle = 'rgba(16,18,32,.6)'; vctx.fillRect(0, 0, view.width, view.height);
+      vctx.drawImage(prevC, EM, EM);
+      vctx.save(); vctx.strokeStyle = 'rgba(255,255,255,.6)'; vctx.lineWidth = pxScale(); vctx.strokeRect(EM, EM, PW, PH); vctx.restore();
+      vctx.save(); vctx.translate(EM, EM); if (canEdit()) drawOverlay(); vctx.restore();
+    } else {
+      vctx.drawImage(prevC, 0, 0);
+      if (canEdit()) drawOverlay();
+    }
   } else {
     const N = +$('tileN').value, hw = PW / N, hh = PH / N;
     for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) vctx.drawImage(prevC, i * hw, j * hh, hw, hh);
@@ -1245,12 +1975,13 @@ function refresh(){
 
 function updateStatus(){
   if (!state.motifs.length){ setStatus('Belum ada motif.'); return; }
+  if (REP.n > 1 && state.items.length){ setStatus('Repeat ' + REP.n + '× aktif. Setel 1× untuk mengedit.'); return; }
   const n = state.items.length;
   if (state.kind === 'one'){ setStatus(n ? n + ' gambar di kanvas.' : 'Kanvas kosong. Tambah lewat tombol + di daftar motif.'); return; }
   if (state.dirty){ setStatus(n + ' motif, susunan manual (dikunci).'); return; }
   if (!n){ setStatus('Semua motif bernilai 0.'); return; }
   let t = n + ' motif tersusun.';
-  if (state.skipped) t += ' ' + state.skipped + ' tidak muat, kecilkan ukuran atau kurangi jumlah.';
+  if (state.skipped) t += ' ' + state.skipped + ' tidak muat.';
   setStatus(t);
 }
 
@@ -1263,10 +1994,33 @@ function schedule(now){
 /* ---------- Edit manual: pilih, geser, ubah ukuran, putar ---------- */
 
 const isFrozen = () => state.kind === 'one' || state.dirty;
-const canEdit = () => state.mode === 'preview' && (state.kind === 'one' || $('edit').checked);
+const canEdit = () => REP.n <= 1 && state.mode === 'preview' && (state.kind === 'one' || $('edit').checked);
 let rafId = 0, lastHint = 0, snapOnce = false, drag = null;
 
-function redrawNow(){ render(pctx, PW, PH, state.items, false); show(); }
+const REP = { n: 1, fx: .5, fy: .5 };
+// Repeat = zoom out: seluruh kanvas dikecilkan lalu dijajar tanpa celah (bukan menyalin pinggirnya).
+// Titik fokus (fx, fy) = bagian gambar yang tetap di tempatnya saat di-zoom out.
+function repeatCells(W, H){
+  const n = REP.n, cw = W / n, ch = H / n, x0 = REP.fx * (W - cw), y0 = REP.fy * (H - ch), out = [];
+  const c0 = Math.floor(-x0 / cw), c1 = Math.ceil((W - x0) / cw), r0 = Math.floor(-y0 / ch), r1 = Math.ceil((H - y0) / ch);
+  for (let r = r0; r < r1; r++) for (let c = c0; c < c1; c++) out.push([x0 + c * cw, y0 + r * ch, cw, ch]);
+  return out;
+}
+function renderRepeat(ctx, W, H, hq){
+  const cw = W / REP.n, ch = H / REP.n, tw = Math.max(1, Math.round(cw)), th = Math.max(1, Math.round(ch));
+  const t = document.createElement('canvas'); t.width = tw; t.height = th;
+  render(t.getContext('2d'), tw, th, state.items, hq);
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
+  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+  for (const [x, y] of repeatCells(W, H)){
+    const px = Math.round(x), py = Math.round(y), pw = Math.round(x + cw) - px, ph = Math.round(y + ch) - py;
+    ctx.drawImage(t, 0, 0, tw, th, px, py, pw, ph);
+  }
+  ctx.restore(); t.width = t.height = 1;
+}
+const renderArt = (ctx, W, H, hq) => (REP.n > 1 && state.items.length) ? renderRepeat(ctx, W, H, hq) : render(ctx, W, H, state.items, hq);
+
+function redrawNow(){ renderArt(pctx, PW, PH, false); show(); }
 function redraw(){ if (rafId) return; rafId = requestAnimationFrame(() => { rafId = 0; redrawNow(); }); }
 
 function layoutCtl(){
@@ -1296,17 +2050,18 @@ function scaleFor(m, sf){
   const base = +$('size').value / 100, unit = Math.sqrt(GW * GH);
   return Math.min(base * unit * sf / Math.sqrt(m.w * m.h), 0.55 * Math.min(GW, GH) / Math.max(m.w, m.h));
 }
+const oneFlag = () => state.oneWrap === false;   // true = potong di tepi, false = sambung (wrap)
 function initComp(){
   state.compStarted = true; state.items = []; state.stash.one = state.items; state.selItem = null;
   const m = selMotif(); if (!m) return;
-  const it = { base: m, m: makeVariant(m, m.tint), x: .5, y: .5, sc: Math.min(GW * .8 / m.w, GH * .8 / m.h), rot: 0, flip: false, one: true };
+  const it = { base: m, m: makeVariant(m, m.tint), x: .5, y: .5, sc: Math.min(GW * .8 / m.w, GH * .8 / m.h), rot: 0, flip: false, one: oneFlag() };
   state.items.push(it); state.selItem = it;
 }
 function addInstance(m){
   snapshot(); markDirty();
   const comp = state.kind === 'one', j = () => state.items.length ? (Math.random() - .5) * .08 : 0;
   const it = { base: m, m: makeVariant(m, m.tint), x: .5 + j(), y: .5 + j(),
-    sc: comp ? Math.min(GW * .4 / m.w, GH * .4 / m.h) : scaleFor(m, 1), rot: 0, flip: false, one: comp };
+    sc: comp ? Math.min(GW * .4 / m.w, GH * .4 / m.h) : scaleFor(m, 1), rot: 0, flip: false, one: comp && oneFlag() };
   state.items.push(it); state.selItem = it;
   renderList(); redrawNow(); updateSelUI(); updateStatus();
 }
@@ -1320,14 +2075,14 @@ function removeLastOf(m){
   }
 }
 
-function pxScale(){ const w = view.getBoundingClientRect().width; return w > 0 ? PW / w : 2; }
+function pxScale(){ const w = view.getBoundingClientRect().width; return w > 0 ? view.width / w : 2; }
 function boxOf(it){
   const S = pxScale(), k = PW / GW, m = it.m, dw = m.w * it.sc * k, dh = m.h * it.sc * k;
   const cx = it.x * PW, cy = it.y * PH, c = Math.cos(it.rot), sn = Math.sin(it.rot), f = it.flip ? -1 : 1;
   const T = (lx, ly) => { lx *= f; return [cx + lx * c - ly * sn, cy + lx * sn + ly * c]; };
   // Titik putar di atas kotak; kalau keluar kanvas, pindah ke dalam kotak supaya tetap bisa dijangkau
   let rp = T(0, -dh / 2 - 38 * S); const mg = 14 * S;
-  if (rp[0] < mg || rp[0] > PW - mg || rp[1] < mg || rp[1] > PH - mg) rp = T(0, -dh / 2 + Math.min(38 * S, dh / 2));
+  if (rp[0] < mg - EM || rp[0] > PW + EM - mg || rp[1] < mg - EM || rp[1] > PH + EM - mg) rp = T(0, -dh / 2 + Math.min(38 * S, dh / 2));
   return { corners: [T(-dw / 2, -dh / 2), T(dw / 2, -dh / 2), T(dw / 2, dh / 2), T(-dw / 2, dh / 2)], top: T(0, -dh / 2), rot: rp };
 }
 function drawOverlay(){
@@ -1356,7 +2111,7 @@ function drawOverlay(){
 }
 
 const dist2 = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
-const evPoint = e => { const r = view.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * PW, (e.clientY - r.top) / r.height * PH]; };
+const evPoint = e => { const r = view.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * view.width - EM, (e.clientY - r.top) / r.height * view.height - EM]; };
 
 function hitItem(it, p){
   const m = it.m, k = PW / GW, dw = m.w * it.sc * k, dh = m.h * it.sc * k;
@@ -1445,13 +2200,13 @@ function syncTools(){
   ['tDup', 'tFlip', 'tFront', 'tBack', 'tCx', 'tCy', 'tDel'].forEach(id => { $(id).disabled = !has; });
 }
 function syncEditUI(){
-  const on = state.kind === 'one' || $('edit').checked;
+  const on = REP.n <= 1 && (state.kind === 'one' || $('edit').checked);
   document.body.classList.toggle('editing', on);
   $('tools').hidden = !(on && state.mode === 'preview');
   $('editLbl').hidden = state.kind === 'one';
   view.style.touchAction = canEdit() ? 'none' : '';
-  $('shuffle').textContent = state.kind === 'one' ? 'Mulai ulang' : 'Acak ulang';
-  updateSelUI(); redrawNow();
+  setLbl($('shuffle'), state.kind === 'one' ? 'Mulai ulang' : 'Acak ulang');
+  applyViewSize(); updateSelUI(); redrawNow();
 }
 function updateSelUI(light){
   const it = state.selItem && state.items.indexOf(state.selItem) >= 0 ? state.selItem : null;
@@ -1517,8 +2272,8 @@ function symbolFor(m, id){
   return '<symbol id="' + id + '" viewBox="' + cv + '" overflow="hidden"><g' + attrs + '>' + inner + '</g></symbol>';
 }
 
-function buildSVG(W, H){
-  const k = W / GW;
+function buildSVG(W, H, opt){
+  const tileN = (opt && opt.tileN) || 1, k = W / GW;
   let defs = '', uses = '', n = 0;
   const idOf = new Map();
   usedMotifs().forEach(m => { const id = 'm' + (++n); idOf.set(m, id); defs += symbolFor(m, id); });
@@ -1535,12 +2290,22 @@ function buildSVG(W, H){
               '" width="' + num(dw) + '" height="' + num(dh) + '" transform="' + tr + '"/>\n';
     }
   }
-  const sb = svgBg(W, H);
-  const bg = sb.rect ? sb.rect + '\n' : '';
+  const sb = svgBg(W, H), bg = sb.rect ? sb.rect + '\n' : '';
+  defs += sb.defs + '\n<clipPath id="artboard"><rect width="' + W + '" height="' + H + '"/></clipPath>\n';
+  defs += '<g id="u0"><g clip-path="url(#artboard)">\n' + bg + uses + '</g></g>\n';
+  const cell = (id, x, y, s) => '<use xlink:href="#' + id + '" href="#' + id + '" transform="translate(' + num(x) + ' ' + num(y) + ') scale(' + s.toFixed(6) + ')"/>\n';
+  let top = 'u0';
+  if (REP.n > 1 && state.items.length){
+    let g = ''; repeatCells(W, H).forEach(([x, y]) => { g += cell('u0', x, y, 1 / REP.n); });
+    defs += '<g id="u1"><g clip-path="url(#artboard)">\n' + g + '</g></g>\n'; top = 'u1';
+  }
+  if (tileN > 1){
+    let g = ''; for (let i = 0; i < tileN; i++) for (let j = 0; j < tileN; j++) g += cell(top, i * W / tileN, j * H / tileN, 1 / tileN);
+    defs += '<g id="u2"><g clip-path="url(#artboard)">\n' + g + '</g></g>\n'; top = 'u2';
+  }
   return '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="' + W + '" height="' + H +
-    '" viewBox="0 0 ' + W + ' ' + H + '">\n<defs>\n' + defs + sb.defs + '\n<clipPath id="artboard"><rect width="' + W + '" height="' + H + '"/></clipPath>\n</defs>\n' +
-    '<g clip-path="url(#artboard)">\n' + bg + uses + '</g>\n</svg>\n';
+    '" viewBox="0 0 ' + W + ' ' + H + '">\n<defs>\n' + defs + '</defs>\n<use xlink:href="#' + top + '" href="#' + top + '"/>\n</svg>\n';
 }
 
 /* ---------- Ekspor vektor: EPS (PostScript ditulis langsung) ---------- */
@@ -1754,8 +2519,8 @@ function motifPS(m, warn){
   return ops;
 }
 
-function buildEPS(W, H){
-  const warn = { grad: 0, transp: 0, clip: 0, text: 0, img: 0 };
+function buildEPS(W, H, opt){
+  const tileN = (opt && opt.tileN) || 1, warn = { grad: 0, transp: 0, clip: 0, text: 0, img: 0 };
   const k = W / GW;
   let body = '', procs = '', n = 0;
   const idOf = new Map();
@@ -1778,12 +2543,22 @@ function buildEPS(W, H){
       body += num(s) + ' ' + num(s) + ' scale ' + num(-ccx) + ' ' + num(-ccy) + ' translate ' + id + ' grestore\n';
     }
   }
-  const text = '%!PS-Adobe-3.0 EPSF-3.0\n%%Creator: Susun Pattern\n%%Title: pattern\n' +
+  const rect = 'newpath 0 0 moveto ' + W + ' 0 lineto ' + W + ' ' + H + ' lineto 0 ' + H + ' lineto closepath clip newpath\n';
+  procs += '/u0 {\ngsave ' + rect + epsBg(W, H) + body + 'grestore\n} bind def\n';
+  const cell = (id, x, y, s) => 'gsave ' + num(x) + ' ' + num(y) + ' translate ' + s.toFixed(6) + ' ' + s.toFixed(6) + ' scale ' + id + ' grestore\n';
+  let top = 'u0';
+  if (REP.n > 1 && state.items.length){
+    let g = ''; repeatCells(W, H).forEach(([x, y]) => { g += cell('u0', x, y, 1 / REP.n); });
+    procs += '/u1 {\ngsave ' + rect + g + 'grestore\n} bind def\n'; top = 'u1';
+  }
+  if (tileN > 1){
+    let g = ''; for (let i = 0; i < tileN; i++) for (let j = 0; j < tileN; j++) g += cell(top, i * W / tileN, j * H / tileN, 1 / tileN);
+    procs += '/u2 {\ngsave ' + rect + g + 'grestore\n} bind def\n'; top = 'u2';
+  }
+  const text = '%!PS-Adobe-3.0 EPSF-3.0\n%%Creator: Reyedit\n%%Title: pattern\n' +
     '%%BoundingBox: 0 0 ' + W + ' ' + H + '\n%%HiResBoundingBox: 0 0 ' + W + ' ' + H + '\n' +
     '%%LanguageLevel: 2\n%%Pages: 1\n%%EndComments\n%%BeginProlog\n' + procs + '%%EndProlog\n%%Page: 1 1\n' +
-    'gsave\n0 ' + H + ' translate 1 -1 scale\n' +
-    'newpath 0 0 moveto ' + W + ' 0 lineto ' + W + ' ' + H + ' lineto 0 ' + H + ' lineto closepath\nclip newpath\n' + epsBg(W, H) +
-    body + 'grestore\nshowpage\n%%EOF\n';
+    'gsave\n0 ' + H + ' translate 1 -1 scale\n' + rect + top + '\ngrestore\nshowpage\n%%EOF\n';
   return { text, warn };
 }
 
@@ -1800,7 +2575,7 @@ function saveBlob(blob, name, showImg){
 async function exportImg(){
   if (!state.items.length){ toast('Tambah motif dulu.'); return; }
   const fmt = $('fmt').value, mp = +$('outsize').value;
-  const btn = $('export'); btn.disabled = true; btn.textContent = 'Membuat file…';
+  const btn = $('export'); btn.disabled = true; setLbl(btn, 'Membuat file…');
   await new Promise(r => setTimeout(r, 40));
   try {
     if (fmt === 'svg' || fmt === 'eps'){
@@ -1834,7 +2609,7 @@ async function exportImg(){
           const c = document.createElement('canvas'); c.width = W; c.height = H;
           const ctx = c.getContext('2d');
           if (!ctx) throw new Error('canvas');
-          render(ctx, W, H, state.items, true);
+          renderArt(ctx, W, H, true);
           const blob = await new Promise(res => c.toBlob(res, png ? 'image/png' : 'image/jpeg', .95));
           c.width = c.height = 1;
           if (!blob) throw new Error('blob');
@@ -1848,7 +2623,7 @@ async function exportImg(){
   } catch (e){
     toast('Gagal membuat file: ' + (e && e.message ? e.message : 'kesalahan tak dikenal'), 4500);
   }
-  btn.disabled = false; btn.textContent = 'Unduh';
+  btn.disabled = false; setLbl(btn, 'Unduh');
 }
 
 /* ---------- Pasang kontrol ---------- */
@@ -1868,38 +2643,44 @@ function syncBg(){
 }
 $('bgMode').addEventListener('input', () => { syncBg(); updateDims(); schedule(); });
 
-function syncRp(){
-  const r = Math.max(1, Math.min(8, Math.round(+$('rpCols').value * GH / GW)));
-  $('rpRows').value = r; $('rpRowsO').textContent = r;
+const FOCUS_NAMES = ['kiri atas', 'atas', 'kanan atas', 'kiri', 'tengah', 'kanan', 'kiri bawah', 'bawah', 'kanan bawah'];
+const focusIdx = () => Math.round(REP.fy * 2) * 3 + Math.round(REP.fx * 2);
+function applyRepeat(){
+  let n = +$('rpCols').value;
+  if (n > 1 && !state.items.length){ n = 1; $('rpCols').value = 1; toast('Susun dulu gambar di kanvas.'); }
+  REP.n = n;
+  $('rpColsO').textContent = n > 1 ? n + '× (' + n * n + ' salinan)' : '1× (tidak diulang)';
+  if (n > 1){ if ($('edit').checked) $('edit').checked = false; state.selItem = null; }
+  $('edit').disabled = n > 1;
+  syncEditUI(); redrawNow(); updateStatus();
 }
-function repeatComp(){
+function syncRp(){ applyRepeat(); }
+$('rpCols').addEventListener('input', applyRepeat);
+document.querySelectorAll('#focusGrid button').forEach((b, i) => b.addEventListener('click', () => {
+  REP.fx = (i % 3) / 2; REP.fy = Math.floor(i / 3) / 2;
+  document.querySelectorAll('#focusGrid button').forEach((o, j) => o.setAttribute('aria-pressed', j === i ? 'true' : 'false'));
+  $('focusO').textContent = FOCUS_NAMES[i].charAt(0).toUpperCase() + FOCUS_NAMES[i].slice(1);
+  redrawNow(); updateStatus();
+}));
+
+// Pindahkan pinggir pola ke tengah (geser ½ kanvas, menyambung ke sisi seberang) supaya sambungan mudah dirapikan
+function shiftSeam(){
   if (!state.items.length){ toast('Susun dulu gambar di kanvas.'); return; }
-  let cols = +$('rpCols').value, rows = +$('rpRows').value;
-  const mode = $('rpMode').value;
-  if (mode === 'brick' && rows % 2) rows++;
-  if (mode === 'drop' && cols % 2) cols++;
-  const total = state.items.length * cols * rows;
-  if (total > 2500){ toast('Terlalu banyak (' + total + ' gambar). Kurangi kolom atau baris.', 4200); return; }
-  const wasOne = state.kind === 'one';
-  if (!wasOne) snapshot();
-  const src = cloneItems(state.items), s = Math.min(1 / cols, 1 / rows), out = [];
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++){
-    const sx = mode === 'brick' && r % 2 ? .5 : 0, sy = mode === 'drop' && c % 2 ? .5 : 0;
-    for (const it of src){
-      out.push(Object.assign({}, it, {
-        x: (((c + it.x + sx) / cols) % 1 + 1) % 1, y: (((r + it.y + sy) / rows) % 1 + 1) % 1,
-        sc: it.sc * s, one: false
-      }));
-    }
-  }
-  state.stash.pattern = out; state.dirty = true;
-  if (wasOne){ setKind('pattern'); }
-  else { state.items = out; state.selItem = null; renderList(); }
-  $('edit').checked = true; syncEditUI(); redrawNow(); updateSelUI(); updateStatus();
-  toast('Komposisi diulang ' + cols + ' × ' + rows + '. Seret gambar untuk merapikan, lalu cek di tab Cek sambungan.', 4200);
+  if (REP.n > 1){ toast('Setel Repeat ke 1× dulu.'); return; }
+  if (state.kind === 'one'){ toast('Mode Satu gambar tidak menyambung di pinggir. Pakai mode Pattern.', 3600); return; }
+  snapshot(); markDirty();
+  state.items.forEach(it => { it.x = (it.x + .5) % 1; it.y = (it.y + .5) % 1; });
+  state.selItem = null; redrawNow(); updateSelUI(); updateStatus();
+  toast('Sambungan sekarang ada di tengah. Tekan lagi untuk mengembalikan.', 3400);
 }
-$('rpCols').addEventListener('input', syncRp);
-$('rpGo').onclick = repeatComp;
+document.querySelectorAll('.shiftSeam').forEach(b => b.onclick = shiftSeam);
+$('oneWrap').addEventListener('input', () => {
+  state.oneWrap = $('oneWrap').checked;
+  if (state.kind === 'one'){
+    state.items.forEach(it => { it.one = !state.oneWrap; if (state.oneWrap){ it.x = ((it.x % 1) + 1) % 1; it.y = ((it.y % 1) + 1) % 1; } });
+    redrawNow(); updateSelUI(); updateStatus();
+  }
+});
 
 function setKind(k){
   if (k !== state.kind){
@@ -1908,8 +2689,9 @@ function setKind(k){
     state.hist = []; state.redo = []; state.selItem = null;
   }
   state.kind = k;
+  if (REP.n > 1) applyRepeat();
   document.querySelectorAll('#kind button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === k ? 'true' : 'false'));
-  $('patCtl').hidden = k === 'one';
+  $('patCtl').hidden = k === 'one'; $('oneCtl').hidden = k !== 'one';
   $('tileTab').disabled = k === 'one';
   if (k === 'one' && state.mode === 'tile') document.querySelector('.tabs button[data-mode="preview"]').click();
   $('listNote').textContent = k === 'one'
@@ -2013,12 +2795,64 @@ document.querySelectorAll('.nudge button').forEach(b => {
 $('export').onclick = exportImg;
 
 // Untuk pengujian
-window.__pat = { repeatComp, syncRp, state, buildSVG, buildEPS, outDims, render, SAMPLES, setKind, boxOf, undo, redo, addInstance, setMotifColor, makeVariant };
+
+/* ---------- Tema dan pengaturan ---------- */
+const LS = { get(k, d){ try { return localStorage.getItem(k) || d; } catch (e){ return d; } }, set(k, v){ try { localStorage.setItem(k, v); } catch (e){} } };
+const THEMES = [['reyedit', 'Reyedit', '#6E4EEB', '#9468F8', '#F4F5FF'], ['batik', 'Batik', '#7A4A22', '#C07A3A', '#FBF6EC'], ['natal', 'Natal', '#B02A22', '#2E7D4F', '#F6FBF7'],
+  ['halloween', 'Halloween', '#F07A12', '#8E4FD6', '#FFF8F0'], ['tahunbaru', 'Tahun Baru', '#E8508A', '#F6A21E', '#FFF8FA']];
+function applyTheme(){
+  const mode = LS.get('rey-mode', 'light'), th = LS.get('rey-theme', 'reyedit'), root = document.documentElement;
+  root.dataset.mode = mode; root.dataset.theme = th;
+  const dark = mode === 'dark' || (mode === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  const t = THEMES.find(x => x[0] === th) || THEMES[0], mt = document.querySelector('meta[name="theme-color"]');
+  if (mt) mt.setAttribute('content', dark ? '#10121C' : t[4]);
+  document.querySelectorAll('#modeSeg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === mode ? 'true' : 'false'));
+  document.querySelectorAll('#themeBox button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === th ? 'true' : 'false'));
+}
+THEMES.forEach(t => {
+  const b = document.createElement('button'); b.type = 'button'; b.dataset.v = t[0];
+  b.innerHTML = '<i style="background:linear-gradient(135deg,' + t[2] + ',' + t[3] + ')"></i><span></span>'; b.querySelector('span').textContent = t[1];
+  b.onclick = () => { LS.set('rey-theme', t[0]); applyTheme(); };
+  $('themeBox').appendChild(b);
+});
+document.querySelectorAll('#modeSeg button').forEach(b => b.onclick = () => { LS.set('rey-mode', b.dataset.v); applyTheme(); });
+$('gear').onclick = () => { $('sheet').hidden = false; };
+$('sheetX').onclick = () => { $('sheet').hidden = true; };
+$('sheet').addEventListener('click', e => { if (e.target === $('sheet')) $('sheet').hidden = true; });
+if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
+applyTheme();
+function setCompact(on){
+  document.body.classList.toggle('compact', on); LS.set('rey-compact', on ? '1' : '0');
+  $('shrink').setAttribute('aria-pressed', on ? 'true' : 'false'); $('shrink').setAttribute('aria-label', on ? 'Perbesar pratinjau' : 'Perkecil pratinjau');
+  $('shrUse').setAttribute('href', on ? '#i-max' : '#i-min');
+}
+$('shrink').onclick = () => setCompact(!document.body.classList.contains('compact'));
+setCompact(LS.get('rey-compact', '0') === '1');
+
+if ('IntersectionObserver' in window) new IntersectionObserver(es => { $('stage').classList.toggle('stuck', !es[0].isIntersecting && es[0].boundingClientRect.top < 0); }).observe($('sent'));
+
+// Layar awal: kartu pratinjau memakai gambar contoh sampai ada motif
+new MutationObserver(() => { const e = !$('hint').hidden; $('frame').classList.toggle('empty', e); $('pv').classList.toggle('empty', e); })
+  .observe($('hint'), { attributes: true, attributeFilter: ['hidden'] });
+$('frame').classList.toggle('empty', !$('hint').hidden); $('pv').classList.toggle('empty', !$('hint').hidden);
+
+// Kartu menu: buka satu per satu supaya halaman tetap pendek
+document.querySelectorAll('details.mc').forEach(d => {
+  d.querySelector('summary').addEventListener('click', () => { d.dataset.u = '1'; });   // hanya ketukan langsung yang menggulir halaman
+  d.addEventListener('toggle', () => {
+    if (!d.open){ delete d.dataset.u; return; }
+    document.querySelectorAll('details.mc').forEach(o => { if (o !== d && o.open) o.open = false; });
+    if (d.dataset.u){ delete d.dataset.u; setTimeout(() => d.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60); }
+  });
+});
+
+window.__pat = { renderArt, REP, syncRp, state, buildSVG, buildEPS, outDims, render, SAMPLES, setKind, boxOf, undo, redo, addInstance, setMotifColor, makeVariant };
 
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 setAspect('1:1');
+$('rpColsO').textContent = '1× (tidak diulang)'; $('focusO').textContent = 'Tengah';
 syncBg();
 initSamples();
 setKind('pattern');

@@ -1,6 +1,6 @@
 // Cache sederhana supaya aplikasi bisa dibuka tanpa internet setelah dibuka sekali.
 // Naikkan angka VERSI setiap kali index.html diganti supaya HP memuat versi baru.
-const VERSI = 'susun-pattern-v1';
+const VERSI = 'reyedit-v7';
 const FILE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png'];
 
 self.addEventListener('install', e => {
